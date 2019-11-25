@@ -60,3 +60,7 @@ One of the most important and interesting results of this simulation is the tota
 
 * _MinorCPU_ Kernel Ticks: 184,532,000
 * _TimingSimpleCPU_ Kernel Ticks: 389,854,000
+
+Question no.3b
+
+The results show that the Minor kernel is a lot faster than the TimingSimple kernel. This is an expected result because the Minor kernel uses a 4-stage pipeline while TimingSimple doesn't. This means that in Minor kernel while one instruction is processed by the ALU the next one can be fetched.
