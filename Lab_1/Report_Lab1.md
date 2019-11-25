@@ -46,3 +46,17 @@ The TimingSimpleCPU is the version of SimpleCPU that uses timing memory accesses
 * **HPI CPU**  
 High Performance In-Order (HPI) CPU is based on the Arm architecture and is tuned to be representative of a modern in-order Armv8-A implementation. One of its basic characteristics is that it uses the same 4-stage pipeline that is used in the Minor CPU. Moreover, there are separate instruction and data buses, hence an instruction cache (ICache)
 and a data cache (DCache). So, there are distinct instruction and data L1 caches backed by a unified L2 cache.
+
+Question no.3a
+
+We write a very simple .c file which just adds all the numbers from 1 to 10,000 and prints the sum of them. 
+In order to run an ARM executable file, after we cross-compiled it, we used the command: 
+```bash
+./build/ARM/gem5.opt -d /home/vamoirid/Desktop/git/Computer-Architecture/Lab_1/MinorCPU_Result ./configs/example/se.py --cpu-type=MinorCPU --caches -c '/home/vamoirid/Desktop/git/Computer-Architecture/Lab_1/testprog_arm' 
+```
+we run it again for _TimingSimpleCPU_ and save everything in the _TimingSimpleCPU_Result_ folder. All the generated files are located in these two folders (_for better accessibility the 2 stats.txt files are also inside the initial folder Lab_1_).  
+
+One of the most important and interesting results of this simulation is the total number of ticks that elapsed for the program to run on the CPU, and here are the values:
+
+* _MinorCPU_ Kernel Ticks: 184,532,000
+* _TimingSimpleCPU_ Kernel Ticks: 389,854,000
