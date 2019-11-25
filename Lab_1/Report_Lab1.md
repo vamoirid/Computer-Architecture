@@ -64,3 +64,38 @@ One of the most important and interesting results of this simulation is the tota
 Question no.3b
 
 The results show that the Minor kernel is a lot faster than the TimingSimple kernel. This is an expected result because the Minor kernel uses a 4-stage pipeline while TimingSimple doesn't. This means that in Minor kernel while one instruction is processed by the ALU the next one can be fetched.
+
+Question no.3c
+
+As it is requested, in order to see how our system performs with different parameters, the cpu clock-frequency and the type of RAM were modified in order to find out how these two affect the program execution and the overall performance.
+
+For the MinorCPU the total ticks of the CPU with respect to the CPU clock and RAM type are:
+
+|   | LPDDR3_1600_1x32 | DDR3_1600_8x8 | DDR4_2400_8x8 |
+|:------:|:-----------:|:-----------:|:-----------:|
+| 2.0GHz | 191,091,000 | 184,532,000 | 183,262,000 |
+| 2.5GHz | 159,687,600 | 153,259,600 | 152,151,600 |
+| 3.0GHz | 138,839,355 | 132,709,491 | 131,277,591 |
+| 3.5GHz | 123,842,576 | 117,866,606 | 116,378,834 |
+| 4.0GHz | 112,557,000 | 106,028,000 | 105,012,000 |
+
+For the TimingSimpleCPU the total ticks of the CPU with respect to the CPU clock and RAM type are:
+
+|   | LPDDR3_1600_1x32 | DDR3_1600_8x8 | DDR4_2400_8x8 |
+|:------:|:-----------:|:-----------:|:-----------:|
+| 2.0GHz | 394,541,000 | 389,854,000 | 388,805,000 |
+| 2.5GHz | 322,008,000 | 317,202,000 | 316,645,200 |
+| 3.0GHz | 273,696,030 | 268,560,171 | 268,214,184 |
+| 3.5GHz | 239,280,756 | 234,325,806 | 233,033,944 |
+| 4.0GHz | 212,989,000 | 207,634,000 | 207,003,000 |
+
+Some statistics that are generated from these results are
+1. MinorCPU is more than twice as fast as TimingSimpleCPU for the same configuration.
+2. Upgrading from LPDDR3 to DDR3 for a system with MinorCPU equals an increment in speed of execution of about 4-5% while in TimingSimpleCPU based systems is 1-2.5%.
+3. Upgrading from DDR3 to DDR4 for a system with MinorCPU equals an increment in speed of execution of <1% while there is no change in TimingSImpleCPU based system.
+4. Upgrading from 2GHz to 2.5GHz equals an increment in speed of execution of 15-16% for MinorCPU based systems while for TimingSimpleCPU based systems the same upgrade equals 18-19% increase.
+5. Upgrading from 3.5GHz to 4GHz equals an increment in speed of execution of 8-9% for MinorCPU based systems while for TimingSimpleCPU based systems the same upgrade equals 11.5-12.5% increase.
+6. If the CPU clock frequency is doubled from 2GHz to 4GHz in MinorCPU based systems there is an increase in speed of execution of about 42% while in TimingSimpleCPU based systems the increase is almost 47%.
+7. Even with the best configuration (--cpu-clock 4GHz --mem-type DDR4_2400_8x8) TimingSimpleCPU is 8% slower than the worst configuration (--cpu-clock 2GHz --mem-type LPDDR3_1600_8x8) MinorCPU.
+
+It is undeniable that MinorCPU is quite faster than TimingSimpleCPU due to the pipeline architecture. While TimingSimpleCPU awaits for the memory to respond in order to fetch the nexr instruction, MinorCPU does it simultaneously when the previous one is in the ALU. Of course having a 4-stage pipeline doesn't mean a 4 times increase in speed because of the fact that fetching, decoding and executing are procedures with different computing times.
