@@ -2,10 +2,10 @@
 
 ### 1. Configurable parameters in _starter_se.py_.
 
-In the file _starter_se.py_ there are several variables that are able to change the parameters of the systems that we simulate in **gem5**. These variables can be very easily distinguished from the _parser_ function of the same program.
+In the file _starter_se.py_, there are several variables that are able to change the parameters of the systems that we simulate in **gem5**. These variables can be very easily distinguished from the _parser_ function of the same program.
 
 * _--cpu_: this flag defines the type of kernel that we want to use in our simulation. There are 3 choices which are: atomic, minor, hpi.
-* _--cpu-freq_: this flag of CPU clock frequency.
+* _--cpu-freq_: this flag defines CPU clock frequency.
 * _--num-cores_: this flag defines the number of cores that the CPU is going to use for the execution of the program. If the program has no parallelism, then this number doesn't matter.
 * _--mem-type_: this flag defines the type of RAM that we want to use in the simulation.
 * _--mem-channels_: this flag defines the number of Channels that the memory consists of.
@@ -16,15 +16,15 @@ Using these flags we can basically change the characteristics of the system to b
 
 ### 2. Identification of configurable parameters in generated files.
 
-Except for _stats.txt_ file, there are also 2 other files that contain valuable information for the system that simulated. These 2 files are _config.ini_ and _config.json_ which contain exactly the same information, just in different formats. The following information are derived from _config.ini_ only because it is in a more readable format.
+Except for _stats.txt_ file, there are also 2 other files that contain valuable information for the system that was simulated. These 2 files are _config.ini_ and _config.json_ which contain exactly the same information, just in different formats. The following information are derived from _config.ini_ only because it is in a more readable format.
 
-_Line 44_: **[system.clk_domain]**. The variable _clock_ has a value of 1000. This means that the system domain frequency is 1000000000000 / 1000 = 1GHz. If we changed the clock domain frequency to 2GHz the variable would be equal to 500 instead of 1000.
+_Line 44_: **[system.clk_domain]**. The variable _clock_ has a value of 1000. This means that the system domain frequency is 1000000000000 / 1000 = 1GHz. If we change the clock domain frequency to 2GHz the variable would be equal to 500 instead of 1000.
 
 _Line 58_: **[system.cpu_cluster]**. The variable _clock_ has a value of 250. Respectively this means that the CPU clock is set at 4GHz. Like before if the clock frequency is changed with the flag _--cpu-freq = "5GHz"_ the value would be 200.
 
-_Line 66_: **[system.cpu_cluster.cpus]**. The variable _type_ has a value of "MinorCPU" because we chose the flag _--cpu="minor"_. If we were to choose another arcitecture such as atomic then the variable _type_ would have been "AtomicSimpleCPU". Except for this, if we scroll down in the file we are going to see a lot of variables in different _structs_ with the name _type_ have values derived from MinorCPU when this type of kernel is used. When another type is used then the respective variables change their values in order to match the kernel type. Moreover, the variable _numThreads = 1_ means that we used just one core for our execution.
+_Line 66_: **[system.cpu_cluster.cpus]**. The variable _type_ has a value of "MinorCPU" because we chose the flag _--cpu="minor"_. If we were to choose another architecture such as atomic then the variable _type_ would have been "AtomicSimpleCPU". Except for this, if we scroll down in the file we are going to see a lot of variables in different _structs_ with the name _type_ have values derived from MinorCPU when this type of kernel is used. When another type is used then the respective variables change their values in order to match the kernel type. Moreover, the variable _numThreads = 1_ means that we used just one core for our execution.
 
-_Line 1236_: **[system.mem_ctrlsX]**. The variable _ranks_per_channel_ has a value of 2 which is the default value. If we change that through the flag _--mem-rank 4_ then the new value is going to be 4 respectively. If we use the standar _--mem-channels_ value which is 2 then there would be 2 instaces for the channels: _system.mem_ctrls0_ and _system.mem_ctrls1_. Inside both of these structs there is a variable _ranks_per_channel_ obviously. If we were to use more channels then there would be more instances such as _system.mem_ctrls2_, _system.mem_ctrls3_ etc. These can be found inside **[system]** which is in _Line 13_. Moreover, inside this struct we can find the size of the memory that we set with the flag _--mem-size_. The default values is 2GB so if we take a look at variable _system.mem_ctrlsX_, there is a value with the name _range_. This value shows the total size of the memory. 
+_Line 1236_: **[system.mem_ctrlsX]**. The variable _ranks_per_channel_ has a value of 2 which is the default value. If we change that through the flag _--mem-rank 4_ then the new value is going to be 4 respectively. If we use the standar _--mem-channels_ value which is 2 then there would be 2 instances for the channels: _system.mem_ctrls0_ and _system.mem_ctrls1_. Inside both of these structs there is a variable _ranks_per_channel_ obviously. If we were to use more channels then there would be more instances such as _system.mem_ctrls2_, _system.mem_ctrls3_ etc. These can be found inside **[system]** which is in _Line 13_. Moreover, inside this struct we can find the size of the memory that we set with the flag _--mem-size_. The default values is 2GB so if we take a look at variable _system.mem_ctrlsX_, there is a value with the name _range_. This value shows the total size of the memory. 
 
 Last but not least, in order to figure out the Type of RAM that we used for the system, we can take a look at the _.pdf_ or _.svg_ files generated by the simulation. It clearly shows the type of kernel that was used for the simulation and also the type and the channels of RAM that were used.
 
@@ -33,13 +33,13 @@ Last but not least, in order to figure out the Type of RAM that we used for the 
 There 3 different types of CPUs that we can use in the above examples with **gem5**. Their common characteristic is that all of them are in-order CPUs which means that they execute the instructions by the order they arrive to the CPU.
 
 * **Minor CPU**  
-The MinorCPU is a flexible in-order processor model which was originally developed to support the Arm ISA, and is applicable to other ISAs as well. MinorCPU has a fixed four-stage in-order execution pipeline, while having configurable data structures and execute behavior. The four-stage pipeline implemented by MinorCPU includes fetching lines, decomposition into macro-ops, decomposi- tion of macro-ops into micro-ops and execute. The basic characteristic of this type of CPU is that it has configurable data structures which helps in build a memory hierarchy in order to better memory access time.
+The MinorCPU is a flexible in-order processor model which was originally developed to support the Arm ISA, and is applicable to other ISAs as well. MinorCPU has a fixed four-stage in-order execution pipeline, while having configurable data structures. The four-stage pipeline implemented by MinorCPU includes fetching lines, decomposition into macro-ops, decomposition of macro-ops into micro-ops and execute. The basic characteristic of this type of CPU is that it has configurable data structures which helps in build a memory hierarchy in order to better memory access time.
 
 * **AtomicSimple CPU**  
 The AtomicSimpleCPU is the version of SimpleCPU that uses atomic memory accesses. It uses the latency estimates from the atomic accesses to estimate overall cache access time. It is basically an uninterruptable read-modify-write memory operation which is requested by the CPU and updates a single value in a specific address.
 
 * **TimingSimple CPU**  
-The TimingSimpleCPU is the version of SimpleCPU that uses timing memory accesses. It stalls on cache accesses and waits for the memory system to respond prior to proceeding.
+The TimingSimpleCPU is the version of SimpleCPU that uses timing memory accesses. It stalls on cache accesses and waits for the memory system to respond prior to proceeding(_no pipeline_).
 
 * **HPI CPU**  
 High Performance In-Order (HPI) CPU is based on the Arm architecture and is built to represent a modern in-order Armv8-A implementation. One of its basic characteristics is that it uses the same 4-stage pipeline that is used in the Minor CPU. Moreover, there are separate instruction and data buses, hence an instruction cache (ICache)
