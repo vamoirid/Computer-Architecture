@@ -22,7 +22,7 @@ What we need to do, is to search for the respective references of each parameter
 If we search for the term _icache_ inside the _config.ini_ file we are going to find some of the information that we need about the Insruction Cache Memory. In _Line 789_: **[system.cpu.icache]**, we can very easily recognise that the variable _size = 32768_ states that the L1-Instruction Cache has a size of **32kB**. Moreover, the variable _assoc = 2_ states that the I-Cache has 2-way Set Associativity.
 
 * **L1 Data Cache**  
-Similarly, if we search for the term _dcache_ inside the _config.ini_ file we are going to find some of the information that we need about the Data Cache Memory. In _Line 155_: **[system.cpu.dcache]**, we can very easily recognise that the variable _size = 65536_ states that the L1-Data Cache has a size of **64k**. Moreover, the variable _assoc = 2_ states that the I-Cache has a 2-way Set Associativity.
+Similarly, if we search for the term _dcache_ inside the _config.ini_ file we are going to find some of the information that we need about the Data Cache Memory. In _Line 155_: **[system.cpu.dcache]**, we can very easily recognise that the variable _size = 65536_ states that the L1-Data Cache has a size of **64kB**. Moreover, the variable _assoc = 2_ states that the I-Cache has a 2-way Set Associativity.
 
 * **L2 Cache**  
 The procedure in order to search for the _L2 Cache_ parameters is exactly the same. In _Line 994_: **[system.l2]**, we can very easily see that the _size = 2097152_ (which is equal to 2*2^20) and it means that L2-Cache has a size of **2MB**. Moreover, the variable _assoc = 8_ states that the L2-Cache has a 8-way Set Associativity.
@@ -46,7 +46,7 @@ A subset of the Spec CPU2006 benchmarks was used in order to see the performance
 ```bash
 ./build/ARM/gem5.opt -d spec_results/specmcf configs/example/se.py --cpu- type=MinorCPU --caches --l2cache -c spec_cpu2006/429.mcf/src/specmcf -o "spec_cpu2006/429.mcf/data/inp.in" -I 100000000
 ```
-* **456.hmmer** is a benchmark which makes the CPU search in a gene database using Hiden Markov Model.  
+* **456.hmmer** is a benchmark which makes the CPU search in a gene database using Hiden Markov Models.  
 ```bash
 ./build/ARM/gem5.opt -d spec_results/spechmmer configs/example/se.py --cpu-type=MinorCPU --caches --l2cache -c spec_cpu2006/456.hmmer/src/spechmmer -o "--fixed 0 --mean 325 --num 45000 --sd 200 --seed 0 spec_cpu2006/456.hmmer/data/bombesin.hmm" -I 100000000
 ```
@@ -86,3 +86,7 @@ we can understand that it is not only the Miss Rate of the L2 Cache that can mak
 | libm   | 1,488,538         | 1,488,455       | 5,959,471           | 48,806,657          |
 
 As we see, the total accesses in the L2-Cache were a lot more than every other simulation in _sjeng_ and _libm_. This is a result of the slightly higher L1 D-Cache Miss Rate in these 2 benchmarks (0.12 and 0.06 respectfully) with respect to the other 3 benchmarks.
+
+#### 1.3 Differences between System Clock and CPU Clock
+
+Inside the _stats.txt_ and _config.ini_ we can find 2 variables about the clock characteristics. The **system.clk_domain** and **system.cpu_clk_domain**. These 2 variables define the clock sources for different subsets of the system. 
