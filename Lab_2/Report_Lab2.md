@@ -22,7 +22,7 @@ What we need to do, is to search for the respective references of each parameter
 If we search for the term _icache_ inside the _config.ini_ file we are going to find some of the information that we need about the Insruction Cache Memory. In _Line 789_: **[system.cpu.icache]**, we can very easily recognise that the variable _size = 32768_ states that the L1-Instruction Cache has a size of **32kB**. Moreover, the variable _assoc = 2_ states that the I-Cache has 2-way Set Associativity.
 
 * **L1 Data Cache**  
-Similarly, if we search for the term _dcache_ inside the _config.ini_ file we are going to find some of the information that we need about the Data Cache Memory. In _Line 155_: **[system.cpu.dcache]**, we can very easily recognise that the variable _size = 65536_ states that the L1-Data Cache has a size of **64kB**. Moreover, the variable _assoc = 2_ states that the I-Cache has a 2-way Set Associativity.
+Similarly, if we search for the term _dcache_ inside the _config.ini_ file we are going to find some of the information that we need about the Data Cache Memory. In _Line 155_: **[system.cpu.dcache]**, we can very easily recognise that the variable _size = 65536_ states that the L1-Data Cache has a size of **64kB**. Moreover, the variable _assoc = 2_ states that the D-Cache has a 2-way Set Associativity.
 
 * **L2 Cache**  
 The procedure in order to search for the _L2 Cache_ parameters is exactly the same. In _Line 994_: **[system.l2]**, we can very easily see that the _size = 2097152_ (which is equal to 2*2^20) and it means that L2-Cache has a size of **2MB**. Moreover, the variable _assoc = 8_ states that the L2-Cache has a 8-way Set Associativity.
@@ -89,14 +89,14 @@ As we see, the total accesses in the L2-Cache were a lot more than every other s
 
 #### 1.3 Differences between System Clock and CPU Clock
 
-Inside the _stats.txt_ and _config.ini_ we can find 2 variables about the clock characteristics. The **system.clk_domain** and **system.cpu_clk_domain**. These 2 variables define the clock sources for different subsets of the system. The clocks that every subset uses can be found in the _config.ini_ file in the respective class of the object. In order to understand the usage of these 2 variables we run the exact same simulations as before, but this time we added the flag `--cpu-clock=1GHz` in order to change the default CPU frequency of 2GHz to 1GHz. If we take a closer look at the generated _config.dot.pdf_ we can have a first understanding of how the internals of the system are seperated.
+Inside the _stats.txt_ and _config.ini_ we can find 2 variables about the clock characteristics. The **system.clk_domain** which by default is 1GHz and **system.cpu_clk_domain** which by default is 2GHz. These 2 variables define the clock sources for different subsets of the system. The clocks that every subset uses can be found in the _config.ini_ file in the respective class of the object. In order to understand the usage of these 2 variables we run the exact same simulations as before, but this time we added the flag `--cpu-clock=1GHz` in order to change the default CPU frequency of 2GHz to 1GHz. If we take a closer look at the generated _config.dot.pdf_ we can have a first understanding of how the internals of the system are seperated.
 
 ![General Map Image](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/images/map.png)
 
 In this image we can clearly understand that the Main Memory and L2 Cache are not part of the CPU. L2 Cache has the feature that communicates both with the CPU and the Main Memory meaning that in case there is a difference in _system.clk_domain_ and _system.cpu_clk_domain_ the L2 Cache must be able to communicate in different rates with the 2 subsets. The CPU parts are in the _system.cpu_clk_domain_ while the system parts are in the _system.clk_domain_. This means that in the 2nd round of simulations that the CPU clock was changed to 1GHz the clock domains would be like this:
 
-* Main Memory Controller at _system.clk_domain_ = **2GHz**.
-* Main Memory <-----> L2 Cache Memory side communication at _system.clk_domain_ = **2GHz**.
+* Main Memory Controller at _system.clk_domain_ = **1GHz**.
+* Main Memory <-----> L2 Cache Memory side communication at _system.clk_domain_ = **1GHz**.
 * L2 Cache CPU side <-----> CPU communication at _system.cpu_clk_domain_ = **1GHz**.
 * L1 I-Cache <-----> CPU communication at _system.cpu_clk_domain_ = **1GHz**.
 * L1 D-Cache <-----> CPU communication at _system.cpu_clk_domain_ = **1GHz**.  
