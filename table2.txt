@@ -9,3 +9,8 @@ Table for 1GHz Simulations.
 | sjeng  | 0.704056           | 7.040561                     | 0.999972           | 0.000020             | 0.121831             |
 | libm   | 0.262327           | 2.623265                     | 0.999944           | 0.000094             | 0.060971             |
 
+
+The results above show the results of the simulation for --cpu-clock = 1GHz. 
+It is obvious that the miss rates remain the same for both simulations. The 2Ghz clock runs the simulation in almost half the time, due to the low cache miss rates.
+An increase of 27.06% and 50.21% is observed in the sjeng and libm benchmarks respectively, compared to almost 100% of the other three benchmarks, because of the high miss rate at the L2 cache.
+L2 cache has very high miss penalty compared to L1 cache, due to the difference in the speed of the memories.
