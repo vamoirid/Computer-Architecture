@@ -89,7 +89,14 @@ As we see, the total accesses in the L2-Cache were a lot more than every other s
 
 #### 1.3 Differences between System Clock and CPU Clock
 
-Inside the _stats.txt_ and _config.ini_ we can find 2 variables about the clock characteristics. The **system.clk_domain** and **system.cpu_clk_domain**. These 2 variables define the clock sources for different subsets of the system. If we take a closer look at the generated _config.dot.pdf_ we can have a first understanding of how the internals of the system are seperated.
+Inside the _stats.txt_ and _config.ini_ we can find 2 variables about the clock characteristics. The **system.clk_domain** and **system.cpu_clk_domain**. These 2 variables define the clock sources for different subsets of the system. The clocks that every subset uses can be found in the _config.ini_ file in the respective class of the object. In order to understand the usage of these 2 variables we run the exact same simulations as before, but this time we added the flag `--cpu-clock=1GHz` in order to change the default CPU frequency of 2GHz to 1GHz. If we take a closer look at the generated _config.dot.pdf_ we can have a first understanding of how the internals of the system are seperated.
 
 ![General Map Image](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/images/map.png)
 
+In this image we can clearly understand that the Main Memory and L2 Cache are not part of the CPU. L2 Cache has the feature that communicates both with the CPU and the Main Memory meaning that in case there is a difference in _system.clk_domain_ and _system.cpu_clk_domain_ the L2 Cache must be able to communicate in different rates with the 2 subsets. The CPU parts are in the _system.cpu_clk_domain_ while the system parts are in the _system.clk_domain_. This means that in the 2nd round of simulations that the CPU clock was changed to 1GHz the clock domains would be like this:
+
+* Main Memory Controller at _system.clk_domain_ = **2GHz**.
+* Main Memory <-----> L2 Cache Memory side communication at _system.clk_domain_ = **2GHz**.
+* L2 Cache CPU side <-----> CPU communication at _system.cpu_clk_domain_ = **1GHz**.
+* L1 I-Cache <-----> CPU communication at _system.cpu_clk_domain_ = **1GHz**.
+* L1 D-Cache <-----> CPU communication at _system.cpu_clk_domain_ = **1GHz**.
