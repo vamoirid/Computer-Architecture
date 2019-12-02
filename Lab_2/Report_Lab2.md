@@ -113,7 +113,9 @@ The results of the previous benchmarks but with a 1GHz CPU clock are shown below
 | sjeng  | 0.704056           | 7.040561                     | 0.999972           | 0.000020             | 0.121831             |
 | libm   | 0.262327           | 2.623265                     | 0.999944           | 0.000094             | 0.060971             |
  
-Comparing the 2 tables, one can understand some very crucial information on the working of the system. First of all, the Miss Rates of all memories are exactly the same because the Miss Rate has no direct relation with the CPU Clock. The interesting part though is in the Total _Simulation Seconds_ and _CPI_ of the respective benchmarks. What we need to take into consideration is that L1 I-Cache and L1 D-Cache run at the CPU clock speed which means that their speed in both hits and misses is dropped at half, resulting in a higher miss-penalty. However, L2 Cache communication with the Main Memory remains untouched from the CPU clock, so the miss-penalty is exactly the same with the previous simulations. The percentages of these changes are shown in the table below:
+Comparing the 2 tables, one can understand some very crucial information on the working of the system. First of all, the Miss Rates of all memories are exactly the same because the Miss Rate has no direct relation with the CPU Clock. The interesting part though is in the Total _Simulation Seconds_ and _CPI_ of the respective benchmarks. What we need to take into consideration is that L1 I-Cache and L1 D-Cache run at the CPU clock speed which means that their speed in both hits and misses is dropped at half, resulting in a higher miss-penalty. However, L2 Cache communication with the Main Memory remains untouched from the CPU clock, so the miss-penalty is exactly the same with the previous simulations.  
+
+The percentages of these changes are shown in the table below:
 
 |        | Simulation Seconds Increase % | Cycles per Instruction (CPI) Decrease % |
 |:------:|:-----------------------------:|:---------------------------------------:|
