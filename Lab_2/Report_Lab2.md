@@ -99,7 +99,9 @@ In this image we can clearly understand that the Main Memory and L2 Cache are no
 * Main Memory <-----> L2 Cache Memory side communication at _system.clk_domain_ = **2GHz**.
 * L2 Cache CPU side <-----> CPU communication at _system.cpu_clk_domain_ = **1GHz**.
 * L1 I-Cache <-----> CPU communication at _system.cpu_clk_domain_ = **1GHz**.
-* L1 D-Cache <-----> CPU communication at _system.cpu_clk_domain_ = **1GHz**.
+* L1 D-Cache <-----> CPU communication at _system.cpu_clk_domain_ = **1GHz**.  
+
+The addition of an extra CPU could have been helpful if we had our program parallel computed. Now that it has no parallelism there would be no difference in simulation seconds. Except for this, the new CPU will have the same characteristics as the first one regarding CPU clock, L1 I-Cache and L1 D-Cache.
 
 The results of the previous benchmarks but with a 1GHz CPU clock are shown below:
 
@@ -120,3 +122,6 @@ Comparing the 2 tables, one can understand some very crucial information on the 
 | hmmer  | 99.55%                        | 0.02%                                   |
 | sjeng  | 37.10%                        | 31.45%                                  |
 | libm   | 50.18%                        | 24.9%                                   |
+
+The most interesting result is the fact that the _sjeng_ and _libm_ benchmarks had the "most different" results regarding the change in the CPU Clock. It is obvious that while the _bzip_, _mcf_ and _hmmer_ had almost 2-times higher Simulation Seconds, the _sjeng_ and _libm_ had a lot lower percentage. This is because of the fact that L1-Cache miss penalty is higher than before while the L2-Cache miss penalty remained unchanged. Moreover, the CPI had a tremendous decrease in _sjeng_ and _libm_ while there was a slight difference in the other 3.  
+The final and most important result is that the L2-Cache Miss Rate has a tremendous influence in the programs' running time. Even though we doubled the speed of the CPU from 1GHz to 2GHz, the simulations that had a very high L2 Cache Miss Rate couldn't have the same increase in speed as the simulations with a lot lower L2-Cache Miss Rate which had an increase in speed of almost 2x.
