@@ -89,4 +89,7 @@ As we see, the total accesses in the L2-Cache were a lot more than every other s
 
 #### 1.3 Differences between System Clock and CPU Clock
 
-Inside the _stats.txt_ and _config.ini_ we can find 2 variables about the clock characteristics. The **system.clk_domain** and **system.cpu_clk_domain**. These 2 variables define the clock sources for different subsets of the system. 
+Inside the _stats.txt_ and _config.ini_ we can find 2 variables about the clock characteristics. The **system.clk_domain** and **system.cpu_clk_domain**. These 2 variables define the clock sources for different subsets of the system. If we take a closer look at the generated _config.dot.pdf_ we can have a first understanding of how the internals of the system are seperated.
+
+![General Map Image](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/images/map.png)
+
