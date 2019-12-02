@@ -100,3 +100,23 @@ In this image we can clearly understand that the Main Memory and L2 Cache are no
 * L2 Cache CPU side <-----> CPU communication at _system.cpu_clk_domain_ = **1GHz**.
 * L1 I-Cache <-----> CPU communication at _system.cpu_clk_domain_ = **1GHz**.
 * L1 D-Cache <-----> CPU communication at _system.cpu_clk_domain_ = **1GHz**.
+
+The results of the previous benchmarks but with a 1GHz CPU clock are shown below:
+
+|        | Simulation Seconds | Cycles per Instruction (CPI) | L2 Cache Miss Rate | L1 I-Cache Miss Rate | L1 D-Cache Miss Rate |
+|:------:|:------------------:|:----------------------------:|:------------------:|:--------------------:|:--------------------:|
+| bzip   | 0.161025           | 1.610247                     | 0.282157           | 0.000077             | 0.014675             |
+| mcf    | 0.127942           | 1.279422                     | 0.055046           | 0.023627             | 0.002108             |
+| hmmer  | 0.118530           | 1.185304                     | 0.077747           | 0.000221             | 0.001629             |
+| sjeng  | 0.704056           | 7.040561                     | 0.999972           | 0.000020             | 0.121831             |
+| libm   | 0.262327           | 2.623265                     | 0.999944           | 0.000094             | 0.060971             |
+ 
+Comparing the 2 tables, one can understand some very crucial information on the working of the system. First of all, the Miss Rates of all memories are exactly the same because the Miss Rate has no direct relation with the CPU Clock. The interesting part though is in the Total _Simulation Seconds_ and _CPI_ of the respective benchmarks. What we need to take into consideration is that L1 I-Cache and L1 D-Cache run at the CPU clock speed which means that their speed in both hits and misses is dropped at half, resulting in a higher miss-penalty. However, L2 Cache communication with the Main Memory remains untouched from the CPU clock, so the miss-penalty is exactly the same with the previous simulations. The percentages of these changes are shown in the table below:
+
+|        | Simulation Seconds Increase % | Cycles per Instruction (CPI) Decrease % |
+|:------:|:-----------------------------:|:---------------------------------------:|
+| bzip   | 91.73%                        | 4.13%                                   |
+| mcf    | 96.97%                        | 1.51%                                   |
+| hmmer  | 99.55%                        | 0.02%                                   |
+| sjeng  | 37.10%                        | 31.45%                                  |
+| libm   | 50.18%                        | 24.9%                                   |
