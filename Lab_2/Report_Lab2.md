@@ -128,3 +128,23 @@ The percentages of these changes are shown in the table below:
 The most interesting result is the fact that the _sjeng_ and _libm_ benchmarks had the "most different" results regarding the change in the CPU Clock. It is obvious that while the _bzip_, _mcf_ and _hmmer_ had almost 2-times higher Simulation Seconds, the _sjeng_ and _libm_ had a lot lower percentage. This is because of the fact that L1-Cache miss penalty is higher than before while the L2-Cache miss penalty remained unchanged. Moreover, the CPI had a tremendous decrease in _sjeng_ and _libm_ while there was a slight difference in the other 3.  
 
 The final and most important result is that the L2-Cache Miss Rate has a tremendous influence in the programs' running time. Even though we doubled the speed of the CPU from 1GHz to 2GHz, the simulations that had a very high L2 Cache Miss Rate couldn't have the same increase in speed as the simulations with a lot lower L2-Cache Miss Rate which had an increase in speed of almost 2x.
+
+## 2. Design Exploration - Performance Optimization
+
+Now that we have run some basic benchmarks we need to find how we can achieve better performance by changing values in the respective Cache Memory parameters. This can be done by various flags in the bash command. 
+
+### 2.1 Performance Optimization with Memory Organization
+
+### 2.2 Effect of each parameter in CPI
+
+Every parameter regarding Cache Memory, affects the execution time of benchmarks in different ways. In the following table there are graphs that show the change in CPI with respect to the change of **only one** variable each time.
+
+#### 2.2.1 CPI vs L1 Instruction-Cache Size
+
+![CPI vs L1 Instruction-Cache Size](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/L1_iCache_Size.png)
+As we said before, the available L1 I-Cache size are 16kB, 32kB, 64kB and 128kB. What we see here is what it was a little be expected. Every benchmark has a L1 I-Cache Miss Rate value <0.0001% except for the _mcf_ benchmark which has a L1 I-Cache Miss Rate of 0.023%. As a result, _mcf_ was the only benchmark that saw an increase in performance by reducing CPI from 1.4 to 1.15 while every other benchmark had almost no change in performance.
+
+#### 2.2.2 CPI vs L1 Instruction-Cache Associativity
+
+![CPI vs L1 Instruction-Cache Associativity](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/L1_iCache_Assoc.png)
+Again, as it happened before with the L1 I-Cache Size, L1 I-Cache Associativity only affects the _mcf_ benchmark. Moreover, we can validate this result by looking not only the L1 I-Cache Miss Rate but also the overall accesses in L1 I-Cache in _mcf_ benchmark which are noticeably more than other benchmarks.
