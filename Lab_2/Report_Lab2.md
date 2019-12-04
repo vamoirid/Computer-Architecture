@@ -139,9 +139,14 @@ The final and most important result is that the L2-Cache Miss Rate has a tremend
 
 ## 2. Design Exploration - Performance Optimization
 
-Now that we have run some basic benchmarks we need to find how we can achieve better performance by changing values in the respective Cache Memory parameters. This can be done by various flags in the bash command. 
+Now that we have run some basic benchmarks we need to find how we can achieve better performance by changing values in the respective Cache Memory parameters. This can be done by various flags in the bash command such as ```--l1i_size``` ```--l1i_assoc``` ```--l1d_size``` ```--l1d_assoc``` ```--l2_size``` ```--l2_assoc``` ```--cacheline_size```. The purpose of this is to understand not only how just one parameter affects the whole program, but how the total combination of all these parameters can achieve a serious improvement in performance. 
 
 ### 2.1 Performance Optimization with Memory Organization
+
+Memory Organization is in fact the combination of all the above parameters. In order to change the default values we need to know firstly the upper limits for every parameter and secondly the most commonly used distinct values. The total size of memories has some limitations derived from psysical and economical reasons while associativity and cache line size is a little bit more abstract. In fact, if we search the various books and papers we can find some really important information about very common values also for these parameters.
+
+1. Maximum combined L1 Instruction Cache size and L1 Data Cache size is 256kB.
+2. Maximum L2 Cache size is 4MB.
 
 ### 2.2 Effect of each parameter in CPI
 
