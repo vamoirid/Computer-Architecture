@@ -187,11 +187,12 @@ In this graph we can barely see any change in the benchmarks regarding the assoc
 #### 2.2.5 CPI vs L2 Cache Size
 
 ![CPI vs L2 Cache Size](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/L2_Cache_Size.png)
-
+Even though _sjeng_ and _libm_ benchmarks had a very high L2 Cache Memory Miss Rate, the increase of its size had no impact in the overall performance. This means that probably the problem is not the amount of data that L2 Cache can store, but how "close" are the data that the CPU needs. In addition, _bzip_ benchmark that also had a high L2 Cache Miss Rate of 28% saw an improvement in the CPI.
 
 #### 2.2.6 CPI vs L2 Cache Associativity
 
 ![CPI vs L2 Cache Associativity](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/L2_Cache_Assoc.png)
+Again, as before the results are for all benchmarks the same except for a slight change in _bzip_ for the reasons that we stated above.
 
 #### 2.2.7 CPI vs Cache Line Size
 
