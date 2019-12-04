@@ -59,7 +59,9 @@ A subset of the Spec CPU2006 benchmarks was used in order to see the performance
 ./build/ARM/gem5.opt -d spec_results/speclibm configs/example/se.py --cpu-type=MinorCPU --caches --l2cache -c spec_cpu2006/470.lbm/src/speclibm -o "20 spec_cpu2006/470.lbm/data/lbm.in 0 1 spec_cpu2006/470.lbm/data/100_100_130_cf_a.of" -I 100000000
 ```
 
-After running all of these benchmarks, there were some very interesting results that are shown in the following table:
+After running all of these benchmarks, there were some very interesting results that are shown in the following graph and table:
+
+![Benchmarks' results](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bargraph_final.png)  
 
 |        | Simulation Seconds | Cycles per Instruction (CPI) | L2 Cache Miss Rate | L1 I-Cache Miss Rate | L1 D-Cache Miss Rate |
 |:------:|:------------------:|:----------------------------:|:------------------:|:--------------------:|:--------------------:|
