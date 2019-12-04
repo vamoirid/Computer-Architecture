@@ -1,10 +1,9 @@
-## Report for Lab2
-
-### 1. Run SPEC CPU2006 Benchmarks at gem5.
+# Report for Lab2
+## 1. Run SPEC CPU2006 Benchmarks at gem5.
 
 The 2nd Laboratory is about running various benchmarks in **gem5** for different systems, that vary in Cache Memory parameters. These benchmarks are a subset of **SPEC CPU2006** benchmark suite.
 
-#### 1.1 Cache Memory parameters in generated files.
+### 1.1 Cache Memory parameters in generated files.
 
 Every generated file from the simulation contains all the preconfigured parameters of the system and obviously the results of the simulation. In this assignement we need to find some general characteristics about Cache Memories inside the CPU and comment on them. The specific parameters that we need to look for are:
 
@@ -40,7 +39,7 @@ The above results are generated from the standar _spec cpu2006 bzip_ benchmarks.
 ```bash
 ./build/ARM/gem5.opt -d spec_results/specbzip configs/example/se.py --cpu-type=MinorCPU --caches --l2cache -c spec_cpu2006/401.bzip2/src/specbzip -o "spec_cpu2006/401.bzip2/data/input.program 10" -I 100000000
 ```
-#### 1.2 Total time, CPI & Cache Miss Rates for various benchmarks
+### 1.2 Total time, CPI & Cache Miss Rates for various benchmarks
 
 A subset of the Spec CPU2006 benchmarks was used in order to see the performance of the simulated system. These are different benchmarks aiming on different aspects of the CPU capabilties. The list of commands that were used as it was proposed are:
 
@@ -95,7 +94,7 @@ we can understand that it is not only the Miss Rate of the L2 Cache that can mak
 
 As we see, the total accesses in the L2-Cache were a lot more than every other simulation in _sjeng_ and _libm_. This is a result of the slightly higher L1 D-Cache Miss Rate in these 2 benchmarks (0.12 and 0.06 respectfully) with respect to the other 3 benchmarks.
 
-#### 1.3 Differences between System Clock and CPU Clock
+### 1.3 Differences between System Clock and CPU Clock
 
 Inside the _stats.txt_ and _config.ini_ we can find 2 variables about the clock characteristics. The **system.clk_domain** which by default is 1GHz and **system.cpu_clk_domain** which by default is 2GHz. These 2 variables define the clock sources for different subsets of the system. The clocks that every subset uses can be found in the _config.ini_ file in the respective class of the object. In order to understand the usage of these 2 variables we run the exact same simulations as before, but this time we added the flag `--cpu-clock=1GHz` in order to change the default CPU frequency of 2GHz to 1GHz. If we take a closer look at the generated _config.dot.pdf_ we can have a first understanding of how the internals of the system are seperated.
 
@@ -155,6 +154,12 @@ These are all the limitations and acceptable values that we can use in our simul
 
 #### 2.2.1 401.bzip Benchmark Optimization
 
+|        | L2 Cache Miss Rate & Accesses | L1 I-Cache Miss Rate & Accesses| L1 D-Cache Miss Rate & Accesses|
+|:------:|:-----------------------------:|:------------------------------:|:------------------------------:|
+| bzip   | 0.282163 in 712,341           | 0.000077 in 9,663,457          | 0.014798 in 52,077,014         |
+
+If we take a closer look at the results of the _bzip_ benchmark we can see that L1 I-Cache has a very low Miss Rate and also **5 times less** acceses compared to L1 D-Cache, which make us give a lot more attention to L1 D-Cache rather than to L1 I-Cache. Moreover, L1 D-Cache except for the high number in accesses has also a Miss Rate which is almost 1.5%. This amount of Miss Rate equals to more than 750,000 misses in L1 D-Cache which surely causes the CPU to slow down. Furthermore, L2 Cache has a Miss Rate of approximately 28% which corresponds to more than 200,000 misses in L2 cache which considerably slower than L1 Caches and so the miss penalty is a lot higher.
+
 ### 2.2 Effect of each parameter in CPI
 
 Every parameter regarding Cache Memory, affects the execution time of benchmarks in different ways. In the following table there are graphs that show the change in CPI with respect to the change of **only one** variable each time.
@@ -162,7 +167,7 @@ Every parameter regarding Cache Memory, affects the execution time of benchmarks
 #### 2.2.1 CPI vs L1 Instruction-Cache Size
 
 ![CPI vs L1 Instruction-Cache Size](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/L1_iCache_Size.png)
-As we said before, the available L1 I-Cache size are 16kB, 32kB, 64kB and 128kB. What we see here is what it was a little be expected. Every benchmark has a L1 I-Cache Miss Rate value <0.0001% except for the _mcf_ benchmark which has a L1 I-Cache Miss Rate of 0.023%. As a result, _mcf_ was the only benchmark that saw an increase in performance by reducing CPI from 1.4 to 1.15 while every other benchmark had almost no change in performance.
+As we said before, the available L1 I-Cache size are 16kB, 32kB, 64kB and 128kB. What we see here is what it was a little bit expected. Every benchmark has a L1 I-Cache Miss Rate value <0.0001% except for the _mcf_ benchmark which has a L1 I-Cache Miss Rate of 0.023%. As a result, _mcf_ was the only benchmark that saw an increase in performance by reducing CPI from 1.4 to 1.15 while every other benchmark had almost no change in performance.
 
 #### 2.2.2 CPI vs L1 Instruction-Cache Associativity
 
@@ -177,15 +182,17 @@ L1 D-Cache has a lot more acceses than L1 I-Cache because there are more operati
 #### 2.2.4 CPI vs L1 Data-Cache Associativity
 
 ![CPI vs L1 Data-Cache Associativity](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/L1_dCache_Assoc.png)
-In this graph we can barely see any change in the benchmarks regarding the associativity of L1 D-Cache.
+In this graph we can barely see any change in the benchmarks regarding the associativity of L1 D-Cache with the exception of _bzip_ which had a slight improvement due to the high L1 D-Cache Accesses.
 
 #### 2.2.5 CPI vs L2 Cache Size
 
 ![CPI vs L2 Cache Size](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/L2_Cache_Size.png)
+Even though _sjeng_ and _libm_ benchmarks had a very high L2 Cache Memory Miss Rate, the increase of its size had no impact in the overall performance. This means that probably the problem is not the amount of data that L2 Cache can store, but how "close" are the data that the CPU needs. In addition, _bzip_ benchmark that also had a high L2 Cache Miss Rate of 28% saw an improvement in the CPI.
 
 #### 2.2.6 CPI vs L2 Cache Associativity
 
 ![CPI vs L2 Cache Associativity](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/L2_Cache_Assoc.png)
+Again, as before the results are for all benchmarks the same except for a slight change in _bzip_ for the reasons that we stated above.
 
 #### 2.2.7 CPI vs Cache Line Size
 
