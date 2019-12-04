@@ -152,13 +152,27 @@ Memory Organization is in fact the combination of all the above parameters. In o
 
 These are all the limitations and acceptable values that we can use in our simulations in order to improve the performance of the CPU in every benchmark. Now we need to look at where each benchmark is lagging and try to find ways to improve it.
 
-#### 2.2.1 401.bzip Benchmark Optimization
+#### 2.1.1 401.bzip2 Benchmark Optimization
 
-|        | L2 Cache Miss Rate & Accesses | L1 I-Cache Miss Rate & Accesses| L1 D-Cache Miss Rate & Accesses|
-|:------:|:-----------------------------:|:------------------------------:|:------------------------------:|
-| bzip   | 0.282163 in 712,341           | 0.000077 in 9,663,457          | 0.014798 in 52,077,014         |
+|        | L2 Cache Miss Rate & Accesses | L1 I-Cache Miss Rate & Accesses | L1 D-Cache Miss Rate & Accesses |
+|:------:|:-----------------------------:|:-------------------------------:|:-------------------------------:|
+| bzip   | 0.282163 in 712,341           | 0.000077 in 9,663,457           | 0.014798 in 52,077,014          |
+
+**CPI**: 1.679650
 
 If we take a closer look at the results of the _bzip_ benchmark we can see that L1 I-Cache has a very low Miss Rate and also **5 times less** acceses compared to L1 D-Cache, which make us give a lot more attention to L1 D-Cache rather than to L1 I-Cache. Moreover, L1 D-Cache except for the high number in accesses has also a Miss Rate which is almost 1.5%. This amount of Miss Rate equals to more than 750,000 misses in L1 D-Cache which surely causes the CPU to slow down. Furthermore, L2 Cache has a Miss Rate of approximately 28% which corresponds to more than 200,000 misses in L2 cache which considerably slower than L1 Caches and so the miss penalty is a lot higher.
+
+#### 2.1.2 429.mcf Benchmark Optimization
+
+|        | L2 Cache Miss Rate & Accesses | L1 I-Cache Miss Rate & Accesses | L1 D-Cache Miss Rate & Accesses |
+|:------:|:-----------------------------:|:-------------------------------:|:-------------------------------:|
+| mcf    | 0.055046 in 724,390           | 0.023612 in 28,329,862          | 0.002108 in 35,735,336          |
+
+**CPI**: 1.299095
+
+In comparison with the previous benchmark there are a lot of differences regarding the CPI value. First of all, this benchmark has a considerably higher L1 I-Cache Miss Rate at 2.36% which in combination with the over 28 million accesses give us a total number of L1 I-Cache Misses to more than 600,000. We cannot neglect this high number of misses in L1 I-Cache and so upgrading the value or associativity of L1 I-Cache or the overall Cache Line Size. L1 D-Cache has a very low Miss Rate which is not going to cause any effect in the total CPI. Finally, even though L2 Cache has a lot lower Miss Rate at 5.5% we cannot ignore the fact that the L2 Cache Miss-Penalty is a lot higher than that in L1 and so we also need to modify the same parameters as in L1 I-Cache.
+
+#### 2.1.3 456.hmmer Benchmark Optimization
 
 ### 2.2 Effect of each parameter in CPI
 
