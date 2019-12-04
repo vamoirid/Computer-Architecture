@@ -67,7 +67,7 @@ A subset of the Spec CPU2006 benchmarks was used in order to see the performance
 
 After running all of these benchmarks, there were some very interesting results that are shown in the following graph and table:
 
-![Benchmarks' results](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bargraph_final.png)  
+<img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bargraph_final.png" />
 
 |        | Simulation Seconds | Cycles per Instruction (CPI) | L2 Cache Miss Rate | L1 I-Cache Miss Rate | L1 D-Cache Miss Rate |
 |:------:|:------------------:|:----------------------------:|:------------------:|:--------------------:|:--------------------:|
@@ -145,8 +145,15 @@ Now that we have run some basic benchmarks we need to find how we can achieve be
 
 Memory Organization is in fact the combination of all the above parameters. In order to change the default values we need to know firstly the upper limits for every parameter and secondly the most commonly used distinct values. The total size of memories has some limitations derived from psysical and economical reasons while associativity and cache line size is a little bit more abstract. In fact, if we search the various books and papers we can find some really important information about very common values also for these parameters.
 
-1. Maximum combined L1 Instruction Cache size and L1 Data Cache size is 256kB.
-2. Maximum L2 Cache size is 4MB.
+1. Maximum combined L1 Instruction-Cache size and L1 Data-Cache size is 256kB.
+2. Maximum L2 Cache size is 4MB. 
+3. Most common n-set Associativities are 2,4,8,16
+4. Most common Cache Line sizes are 32,64,128 Bytes.
+5. Most common Cache size in discrete powers of 2 (16kB,32kB,...,MAX) which means that L1 I-Cache and L1 D-Cache are at 16kB,32kB,64kB,128kB and L2 Cache is respectively 4MB,2MB,1MB,512kB.
+
+These are all the limitations and acceptable values that we can use in our simulations in order to improve the performance of the CPU in every benchmark. Now we need to look at where each benchmark is lagging and try to find ways to improve it.
+
+#### 2.2.1 401.bzip Benchmark Optimization
 
 ### 2.2 Effect of each parameter in CPI
 
