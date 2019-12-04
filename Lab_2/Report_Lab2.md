@@ -174,6 +174,14 @@ In comparison with the previous benchmark there are a lot of differences regardi
 
 #### 2.1.3 456.hmmer Benchmark Optimization
 
+|        | L2 Cache Miss Rate & Accesses | L1 I-Cache Miss Rate & Accesses | L1 D-Cache Miss Rate & Accesses |
+|:------:|:-----------------------------:|:-------------------------------:|:-------------------------------:|
+| mcf    | 0.077760 in 70,563            | 0.000221 in 17,315,710          | 0.001637 in 43,920,897          |
+
+**CPI**: 1.187917
+
+The CPI of this benchmark are already near the minimum possible number which is 1. The L1 I-Cache Miss Rate is almost 0.02%, L1 D-Cache Miss Rate is almost 0.16% while L2 Cache Miss Rate is 7.7%. Even though 7.7% seems like it could be improved, the total acceses in L2 were only 70k compare to 17M in L1 I-Cache and 44M in L1 D-Cache so even if we tried to reduce the L2 Cache Miss Rate the resulting CPI wouldn't get any better. The only thing that could possibly improve the CPI could be to add more space in L1 D-Cache and increase associativity in order to reduce the Miss Rate. Moreover if the spatial locality of values is high, an even bigger Cache Line size could help improve.
+
 ### 2.2 Effect of each parameter in CPI
 
 Every parameter regarding Cache Memory, affects the execution time of benchmarks in different ways. In the following table there are graphs that show the change in CPI with respect to the change of **only one** variable each time.
