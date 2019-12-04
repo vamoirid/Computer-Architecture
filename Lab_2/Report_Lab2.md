@@ -167,7 +167,7 @@ Every parameter regarding Cache Memory, affects the execution time of benchmarks
 #### 2.2.1 CPI vs L1 Instruction-Cache Size
 
 ![CPI vs L1 Instruction-Cache Size](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/L1_iCache_Size.png)
-As we said before, the available L1 I-Cache size are 16kB, 32kB, 64kB and 128kB. What we see here is what it was a little be expected. Every benchmark has a L1 I-Cache Miss Rate value <0.0001% except for the _mcf_ benchmark which has a L1 I-Cache Miss Rate of 0.023%. As a result, _mcf_ was the only benchmark that saw an increase in performance by reducing CPI from 1.4 to 1.15 while every other benchmark had almost no change in performance.
+As we said before, the available L1 I-Cache size are 16kB, 32kB, 64kB and 128kB. What we see here is what it was a little bit expected. Every benchmark has a L1 I-Cache Miss Rate value <0.0001% except for the _mcf_ benchmark which has a L1 I-Cache Miss Rate of 0.023%. As a result, _mcf_ was the only benchmark that saw an increase in performance by reducing CPI from 1.4 to 1.15 while every other benchmark had almost no change in performance.
 
 #### 2.2.2 CPI vs L1 Instruction-Cache Associativity
 
@@ -182,11 +182,12 @@ L1 D-Cache has a lot more acceses than L1 I-Cache because there are more operati
 #### 2.2.4 CPI vs L1 Data-Cache Associativity
 
 ![CPI vs L1 Data-Cache Associativity](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/L1_dCache_Assoc.png)
-In this graph we can barely see any change in the benchmarks regarding the associativity of L1 D-Cache.
+In this graph we can barely see any change in the benchmarks regarding the associativity of L1 D-Cache with the exception of _bzip_ which had a slight improvement due to the high L1 D-Cache Accesses.
 
 #### 2.2.5 CPI vs L2 Cache Size
 
 ![CPI vs L2 Cache Size](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/L2_Cache_Size.png)
+
 
 #### 2.2.6 CPI vs L2 Cache Associativity
 
