@@ -176,11 +176,29 @@ In comparison with the previous benchmark there are a lot of differences regardi
 
 |        | L2 Cache Miss Rate & Accesses | L1 I-Cache Miss Rate & Accesses | L1 D-Cache Miss Rate & Accesses |
 |:------:|:-----------------------------:|:-------------------------------:|:-------------------------------:|
-| mcf    | 0.077760 in 70,563            | 0.000221 in 17,315,710          | 0.001637 in 43,920,897          |
+| hmmer  | 0.077760 in 70,563            | 0.000221 in 17,315,710          | 0.001637 in 43,920,897          |
 
 **CPI**: 1.187917
 
-The CPI of this benchmark are already near the minimum possible number which is 1. The L1 I-Cache Miss Rate is almost 0.02%, L1 D-Cache Miss Rate is almost 0.16% while L2 Cache Miss Rate is 7.7%. Even though 7.7% seems like it could be improved, the total acceses in L2 were only 70k compare to 17M in L1 I-Cache and 44M in L1 D-Cache so even if we tried to reduce the L2 Cache Miss Rate the resulting CPI wouldn't get any better. The only thing that could possibly improve the CPI could be to add more space in L1 D-Cache and increase associativity in order to reduce the Miss Rate. Moreover if the spatial locality of values is high, an even bigger Cache Line size could help improve.
+The CPI of this benchmark are already near the minimum possible number which is 1. The L1 I-Cache Miss Rate is almost 0.02%, L1 D-Cache Miss Rate is almost 0.16% while L2 Cache Miss Rate is 7.7%. Even though 7.7% seems like it could be improved, the total acceses in L2 were only 70k compare to 17M in L1 I-Cache and 44M in L1 D-Cache so even if we tried to reduce the L2 Cache Miss Rate the resulting CPI wouldn't get any better. The only thing that could possibly improve the CPI could be to add more space in L1 D-Cache and increase associativity in order to reduce the Miss Rate. Moreover if the spatial locality of values is high, an even bigger Cache Line size could help improve but in the end all these changes wouldn't be worth it in terms of cost.
+
+#### 2.1.4 458.sjeng
+
+|        | L2 Cache Miss Rate & Accesses | L1 I-Cache Miss Rate & Accesses | L1 D-Cache Miss Rate & Accesses |
+|:------:|:-----------------------------:|:-------------------------------:|:-------------------------------:|
+| sjeng  | 0.999972 in 5,264,051         | 0.000020 in 31,870,341          | 0.121831 in 86,380,797          |
+
+**CPI**: 10.270554 
+
+The results of this benchmark are quite obvious with respect to what is going wrong. The L2 Cache Miss Rate is over 99.99% with a total number of 5.2M accesses. It absolutely needs enormous improvement in the L2 Cache Miss Rate. This can be done either with the increase of size, the increase of associativity or the increase in Cache Line size. All these three variables, depending on the way the memory accesses happen can improve dramatically the CPI. Moreover, we can see a 12% Miss Rate in L1 D-Cache with more than 86M accesses. This means that almost 900,000 accesses are misses and these lead to L2 Cache accesses. An improvement in L1 D-Cache maybe could reduce the total number of acceses in L2 which is the main reason for the extremely high CPI rate.
+
+#### 2.1.5 470.libm
+
+|        | L2 Cache Miss Rate & Accesses | L1 I-Cache Miss Rate & Accesses | L1 D-Cache Miss Rate & Accesses |
+|:------:|:-----------------------------:|:-------------------------------:|:-------------------------------:|
+| libm   | 0.999944 in 1,488,538         | 0.000094 in 5,959,471           | 0.060972 in 48,806,657          |
+
+**CPI**: 3.493415
 
 ### 2.2 Effect of each parameter in CPI
 
