@@ -30,6 +30,12 @@ The procedure in order to search for the _L2 Cache_ parameters is exactly the sa
 * **Cache Line size**  
 Last but not least, the size of the Cache Line can be found in the very first lines of the generated _config.ini_. In _Line 11_: **[system]** we can see that the variable _cache_line_size = 64_ clearly states that the size of the Cache Line is **64 Bytes**.
 
+|                      | Size | Associativity |
+|:--------------------:|:----:|:-------------:|
+| L1 Instruction-Cache | 32kB | 2             |
+| L1 Data-Cache        | 64kB | 2             |
+| L2 Cache             | 2MB  | 8             |
+
 The above results are generated from the standar _spec cpu2006 bzip_ benchmarks. 
 ```bash
 ./build/ARM/gem5.opt -d spec_results/specbzip configs/example/se.py --cpu-type=MinorCPU --caches --l2cache -c spec_cpu2006/401.bzip2/src/specbzip -o "spec_cpu2006/401.bzip2/data/input.program 10" -I 100000000
