@@ -50,11 +50,11 @@ A subset of the Spec CPU2006 benchmarks was used in order to see the performance
 ```bash
 ./build/ARM/gem5.opt -d spec_results/spechmmer configs/example/se.py --cpu-type=MinorCPU --caches --l2cache -c spec_cpu2006/456.hmmer/src/spechmmer -o "--fixed 0 --mean 325 --num 45000 --sd 200 --seed 0 spec_cpu2006/456.hmmer/data/bombesin.hmm" -I 100000000
 ```
-* **458.sjeng** is a benchmark which uses tree-searches for Artificial Intelligence algorithms.
+* **458.sjeng** is a benchmark which uses tree-searches for Artificial Intelligence & Machine Learning algorithms.
 ```bash
 ./build/ARM/gem5.opt -d spec_results/specsjeng configs/example/se.py --cpu-type=MinorCPU --caches --l2cache -c spec_cpu2006/458.sjeng/src/specsjeng -o "spec_cpu2006/458.sjeng/data/test.txt" -I 100000000
 ```
-* **470.lbm** is a benchmark which uses only computational fluid dynamics calculations.  
+* **470.lbm** is a benchmark which uses only computational fluid dynamics (CFD) calculations.  
 ```bash
 ./build/ARM/gem5.opt -d spec_results/speclibm configs/example/se.py --cpu-type=MinorCPU --caches --l2cache -c spec_cpu2006/470.lbm/src/speclibm -o "20 spec_cpu2006/470.lbm/data/lbm.in 0 1 spec_cpu2006/470.lbm/data/100_100_130_cf_a.of" -I 100000000
 ```
@@ -148,3 +148,26 @@ As we said before, the available L1 I-Cache size are 16kB, 32kB, 64kB and 128kB.
 
 ![CPI vs L1 Instruction-Cache Associativity](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/L1_iCache_Assoc.png)
 Again, as it happened before with the L1 I-Cache Size, L1 I-Cache Associativity only affects the _mcf_ benchmark. Moreover, we can validate this result by looking not only the L1 I-Cache Miss Rate but also the overall accesses in L1 I-Cache in _mcf_ benchmark which are noticeably more than other benchmarks.
+
+#### 2.2.3 CPI vs L1 Data-Cache Size
+
+![CPI vs L1 Data-Cache Size](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/L1_dCache_Size.png)
+L1 D-Cache has a lot more acceses than L1 I-Cache because there are more operation regarding memory reads and writes rather than fetching instructions. This means that an increase in size of this type of Cache could bring lower CPI rates in most apllications. In our case we can see that only _bzip_ and _mcf_ benchmarks see an improvement in CPI even though _sjeng_ and _libm_ have a lot higher L1 D-Cache Miss rates. This means that _sjeng_ and _libm_ most probably suffer also from very high L2 Cache Miss Rates (_>99.99%_) and so maybe the main reason for their high CPI value is this.
+
+#### 2.2.4 CPI vs L1 Data-Cache Associativity
+
+![CPI vs L1 Data-Cache Associativity](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/L1_dCache_Assoc.png)
+In this graph we can barely see any change in the benchmarks regarding the associativity of L1 D-Cache.
+
+#### 2.2.5 CPI vs L2 Cache Size
+
+![CPI vs L2 Cache Size](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/L2_Cache_Size.png)
+
+#### 2.2.6 CPI vs L2 Cache Associativity
+
+![CPI vs L2 Cache Associativity](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/L2_Cache_Assoc.png)
+
+#### 2.2.7 CPI vs Cache Line Size
+
+![CPI vs Cache Line Size](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/Cacheline_Size.png)
+The results in this graph are quite obvious and a little bit controversial one could say. We can clearly see a dramatic reduction in CPI for _sjeng_ and _libm_ benchmarks, a quite smaller reduction in terms of CPI for _bzip_, almost no change for _hmmer_ and a little increase(!) of CPI in _mcf_ benchmark. This means that the theory of **spatial locality** is very well established in the _sjeng_ and _libm_ benchmarks in contrast with the other 3 benchmarks. 
