@@ -271,7 +271,7 @@ By these factors we can assume that L1 Cache Size has 7-8 times bigger impact in
 
 **L1 Cache** is positioned as close to the processor as possible, thus the addition of extra multiplexors and comparators is more difficult than **L2 Cache**. 
 
-Therefore, we can assume that each step of associativity adds a cost of 20% on L1 caches and 15% on L2 Caches. 
+Associativity complexity depends on the **cache size**. Therefore, we can assume that each step of associativity adds a cost of (1+L1assoc/10)*L1size on L1 caches and (1+L2assoc/15)*L2size on L2 Caches. 
 
 * **Cacheline Size**
 ?
