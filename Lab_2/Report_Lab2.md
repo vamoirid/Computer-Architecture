@@ -29,11 +29,13 @@ The procedure in order to search for the _L2 Cache_ parameters is exactly the sa
 * **Cache Line size**  
 Last but not least, the size of the Cache Line can be found in the very first lines of the generated _config.ini_. In _Line 11_: **[system]** we can see that the variable _cache_line_size = 64_ clearly states that the size of the Cache Line is **64 Bytes**.
 
-|                      | Size | Associativity |
+|                      | Size | Associativity | 
 |:--------------------:|:----:|:-------------:|
 | L1 Instruction-Cache | 32kB | 2             |
 | L1 Data-Cache        | 64kB | 2             |
 | L2 Cache             | 2MB  | 8             |
+
+**Cache Line**: 64 Bytes.
 
 The above results are generated from the standar _spec cpu2006 bzip_ benchmarks. 
 ```bash
@@ -240,3 +242,5 @@ Again, as before the results are for all benchmarks the same except for a slight
 
 ![CPI vs Cache Line Size](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/Cacheline_Size.png)
 The results in this graph are quite obvious and a little bit controversial one could say. We can clearly see a dramatic reduction in CPI for _sjeng_ and _libm_ benchmarks, a quite smaller reduction in terms of CPI for _bzip_, almost no change for _hmmer_ and a little increase(!) of CPI in _mcf_ benchmark. This means that the theory of **spatial locality** is very well established in the _sjeng_ and _libm_ benchmarks in contrast with the other 3 benchmarks. 
+
+## 3. Cost of Performance and Cost Efficiency Optimization
