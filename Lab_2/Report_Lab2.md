@@ -285,7 +285,7 @@ The cost function is a polyominal of:
 
 multiplicated with a **CPI Gain** function. 
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=Cost&space;=&space;[32L1_{size}&plus;L2_{size}&space;&plus;&space;(1&plus;\frac{L1_{assoc}}{10})4L1_{size}&plus;(1&plus;\frac{L1_{assoc}}{10})L2_{size}]ln(e^{cpi_{old}}-e^{cpi_{new}}&plus;1)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Cost&space;=&space;[32L1_{size}&plus;L2_{size}&space;&plus;&space;(1&plus;\frac{L1_{assoc}}{10})4L1_{size}&plus;(1&plus;\frac{L1_{assoc}}{10})L2_{size}]ln(e^{cpi_{old}}-e^{cpi_{new}}&plus;1)" title="Cost = [32L1_{size}+L2_{size} + (1+\frac{L1_{assoc}}{10})4L1_{size}+(1+\frac{L1_{assoc}}{10})L2_{size}]ln(e^{cpi_{old}}-e^{cpi_{new}}+1)" /></a>
+<a href="https://www.codecogs.com/eqnedit.php?latex=Cost&space;=&space;[8L1_{size}&plus;L2_{size}&space;&plus;&space;(1&plus;\frac{L1_{assoc}}{10})L1_{size}&plus;(1&plus;\frac{L1_{assoc}}{10})L2_{size}]ln(e^{cpi_{old}}-e^{cpi_{new}}&plus;1)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Cost&space;=&space;[8L1_{size}&plus;L2_{size}&space;&plus;&space;(1&plus;\frac{L1_{assoc}}{10})L1_{size}&plus;(1&plus;\frac{L1_{assoc}}{10})L2_{size}]ln(e^{cpi_{old}}-e^{cpi_{new}}&plus;1)" title="Cost = [8L1_{size}+L2_{size} + (1+\frac{L1_{assoc}}{10})L1_{size}+(1+\frac{L1_{assoc}}{10})L2_{size}]ln(e^{cpi_{old}}-e^{cpi_{new}}+1)" /></a>
 
 
 
