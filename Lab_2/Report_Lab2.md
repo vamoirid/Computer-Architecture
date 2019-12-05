@@ -260,20 +260,31 @@ The Block Size of a memory defines the architecture of a memory. A bigger Block 
 
 
 
-## 3.1.1 L1 Vs L2 Cache Size
-
+### 3.1.1 Association between the variables 
+* **L1 vs L2 Cache Size**
 **L1 Cache** is _3-5_ times faster than L2 cache. It aims for lower latency (_0.9-1.3ns_) compared to **L2 Cache** (_3-5ns_), thus it's made of larger transistors, wider metal tracks, trading off space and needs more power for speed. In terms of _complexity_ **L1 Cache** is one step ahead because it is devided into **instruction** and **data** cache which are accessed _parallelly_. 
 
 By considering all these factors we can assume that L1 Cache Size has 7-8 times bigger impact in cost than L2 Cache Size. 
 
-## 3.1.2 L1 Vs L2 Cache Associativity 
+* **L1 Vs L2 Cache Associativity**
 
 **L1 Cache** is positioned as close to the processor as possible, thus the addition of extra multiplexlers and comparators is more difficult than **L2 Cache**. 
 
 Therefore, we can assume that each step of associativity adds a cost of 20% on L1 caches and 15% on L2 Caches. 
 
+* **Cacheline Size**
 
 ### 3.2 Summarizing the Function 
+The cost function is a polyominal of: 
+
+* **L1 & L2 Cache Size**
+* **L1 & L2 Associativity**
+* **Cacheline Size**
+
+multiplicated with a **CPI Gain** function. 
+
+
+
 
 
 
