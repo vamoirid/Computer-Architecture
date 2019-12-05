@@ -246,3 +246,14 @@ The results in this graph are quite obvious and a little bit controversial one c
 ## 3. Cost of Performance and Cost Efficiency Optimization
 
 The final part of this assignment is about categorizing the changes in the parameters of Cache Memory not only with the CPI optimization but also the overall **"cost"** that they add to the system. With the term **cost** we do not only mean the real price in money, but also the cost of adding physical size to memories, the cost of adding associativity to a memory, the cost of adding bytes in the Cache Line by reducing the total speed and many more examples like these. So we need to find a corresponding function in order to understand which changes are really worth.
+
+### 3.1 Parameters affecting the Cost of Performance
+
+* **Speed of Memory**  
+It is known that the faster a memory is the more costly is going to be because its elements are more expensive to be fabricated.
+* **Size of Memory**  
+The total size of a memory is directly connected with its cost because of the number of transistors that is used. For example, it is reasonable that a 2x size memory would have _almost_ 2x more transistors so its cost would also be 2x.
+* **Associativity of Memory**  
+Even though Associativity has nothing to do with total capacity of memory, it is known that more complexity is added to the memory with higher associativity. A memory with more sets of associativity needs more and bigger Multiplexers in order to access and fetch the data and that adds more hardware.
+* **Block Size of Memory**  
+The Block Size of a memory defines the architecture of a memory. A bigger Block Size would take advantage of spatial locality of a program but also would make the memory slower because it would need to access every time a lot more data in order to be fetced.
