@@ -264,21 +264,20 @@ The Block Size of a memory defines the architecture of a memory. A bigger Block 
 
 ### 3.1.1 Association between the variables
 
-* **L1 vs L2 Cache Size**
-
+* **L1 vs L2 Cache Size**  
 **L1 Cache** is _5--6_ times faster than L2 cache. It aims for lower latency (_0.9-1.3ns_) compared to **L2 Cache** (_4.5-6.2ns_), thus it's made of larger transistors, wider metal tracks, trading off space and needs more power for speed. In terms of _complexity_ **L1 Cache** is one step ahead because it is devided into **instruction** and **data** cache which are accessed _parallelly_.  
 
 By these factors we can assume that L1 Cache Size has 7-8 times bigger impact in cost than L2 Cache Size. 
 
-* **L1 Vs L2 Cache Associativity**
-
+* **L1 Vs L2 Cache Associativity**  
 **L1 Cache** is positioned as close to the processor as possible, thus the addition of extra multiplexers and comparators is more difficult than **L2 Cache**. 
 
 Associativity complexity depends on the **cache size**. Therefore, we can assume that each step of associativity adds a cost of (1+L1.Assoc/10)*L1.Size on L1 Caches and (1+L2.Assoc/15)*L2.size on L2 Caches. 
 
-* **Cache Line Size** increase takes advantage of spatial locality in order to reduce miss rate, they make the memory a lot slower. So as we can understand the increase of Cache Line size in L1 Cache should be a lot costlier than that in L2 Cache because L1 Cache aims exclusively for speed while L2 Cache aims not only for speed but for capacity also. Every time that we need to load a new line we would load 2x the amount of data if we double the amount of data in the Line.
+* **Cache Line Size**  
+The increase of the **Cache Line size** takes advantage of spatial locality in order to reduce miss rate, but they make the memory a lot slower. So as we can understand the increase of Cache Line size in L1 Cache should be a lot costlier than that in L2 Cache because L1 Cache aims exclusively for speed while L2 Cache aims not only for speed but for capacity also. Every time that we need to load a new line we would load 2x the amount of data if we double the amount of data in the Line.
 
-So for L1 Cache the equation is (1+L1.CacheLine_Size/64)*L1.Size while for L2 Cache is (1+L2.CacheLine_Size/2*64)*L2.Size.
+So for L1 Cache the equation is (1+L1.CacheLine_Size/64)*L1.Size while for L2 Cache is (1+L2.CacheLine_Size/)*L2.Size.
 
 ### 3.2 Summarizing the Function 
 The cost function is a polyominal of: 
@@ -290,4 +289,4 @@ The cost function is a polyominal of:
 
 multiplicated with a **CPI Gain** function. 
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=Cost&space;=&space;[10L1_{size}(1&plus;\frac{L1_{assoc}}{10}&space;&plus;&space;\frac{L1_{cacheline}}{64})&plus;2L2_{size}(1&plus;\frac{L2_{assoc}}{15}&plus;\frac{L2_{cacheline}}{256})]ln(e^{cpi_{old}}-e^{cpi_{new}}&plus;1)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Cost&space;=&space;[10L1_{size}(1&plus;\frac{L1_{assoc}}{10}&space;&plus;&space;\frac{L1_{cacheline}}{64})&plus;2L2_{size}(1&plus;\frac{L2_{assoc}}{15}&plus;\frac{L2_{cacheline}}{256})]ln(e^{cpi_{old}}-e^{cpi_{new}}&plus;1)" title="Cost = [10L1_{size}(1+\frac{L1_{assoc}}{10} + \frac{L1_{cacheline}}{64})+2L2_{size}(1+\frac{L2_{assoc}}{15}+\frac{L2_{cacheline}}{256})]ln(e^{cpi_{old}}-e^{cpi_{new}}+1)" /></a>
+<a href="https://www.codecogs.com/eqnedit.php?latex=Cost&space;=&space;[8L1_{size}(1&plus;\frac{L1_{assoc}}{10}&space;&plus;&space;\frac{L1_{cacheline}}{64})&plus;L2_{size}(1&plus;\frac{L2_{assoc}}{15}&plus;\frac{L2_{cacheline}}{256})]ln(e^{cpi_{old}}-e^{cpi_{new}}&plus;1)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Cost&space;=&space;[10L1_{size}(1&plus;\frac{L1_{assoc}}{10}&space;&plus;&space;\frac{L1_{cacheline}}{64})&plus;2L2_{size}(1&plus;\frac{L2_{assoc}}{15}&plus;\frac{L2_{cacheline}}{256})]ln(e^{cpi_{old}}-e^{cpi_{new}}&plus;1)" title="Cost = [10L1_{size}(1+\frac{L1_{assoc}}{10} + \frac{L1_{cacheline}}{64})+2L2_{size}(1+\frac{L2_{assoc}}{15}+\frac{L2_{cacheline}}{256})]ln(e^{cpi_{old}}-e^{cpi_{new}}+1)" /></a>
