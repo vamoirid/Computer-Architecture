@@ -275,7 +275,7 @@ The increase of the Cache Line size takes advantage of spatial locality in order
 In order to include the resulted CPI in the cost function we had to find a relationship between the previous and the new CPI value. First of all this value shouldn't be just the delta CPI but a percentage of it. For example a chane from 10 to 9 CPI shouldn't be as powerfull as a change from 2.5 to 1.5. That's why we used the percentage of CPI change inside a logarithmic function with the addition of **e** in order to have: 
   1) a coefficient of 1 for no change in CPI (Old CPI = New CPI) 
   2) an almost linear function to +inf for values larger than 0 (Old CPI > New CPI) and 
-  3) a logarithmic scale to zero for values smaller than 1 (Old CPI < New CPI).
+  3) a logarithmic scale to zero for values smaller than 0 (Old CPI < New CPI).
   
 Taking all the above into account, the corresponding **CPI Gain** function is <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;ln(\frac{e^{cpi_{old}}-e^{cpi_{new}}}{e^{cpi_{old}}}&plus;e)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;ln(\frac{e^{cpi_{old}}-e^{cpi_{new}}}{e^{cpi_{old}}}&plus;e)" title="ln(\frac{e^{cpi_{old}}-e^{cpi_{new}}}{e^{cpi_{old}}}+e)" /></a>
 
@@ -285,7 +285,7 @@ The cost function is a polyominal of:
 * **L1 & L2 Cache Size**
 * **L1 & L2 Associativity**
 * **Cache Line Size**
-
-multiplied by the **CPI Gain**: 
+* **CPI Gain** 
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=Cost&space;=&space;[8L1_{size}(1&plus;\frac{L1_{Assoc}}{10}&space;&plus;&space;\frac{L1_{CacheLine}}{64})&plus;L2_{size}(1&plus;\frac{L2_{Assoc}}{15}&plus;\frac{L2_{CacheLine}}{128})]*ln(\frac{e^{cpi_{new}}-e^{cpi_{old}}}{e^{cpi_{new}}}&plus;e)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Cost&space;=&space;[8L1_{size}(1&plus;\frac{L1_{Assoc}}{10}&space;&plus;&space;\frac{L1_{CacheLine}}{64})&plus;L2_{size}(1&plus;\frac{L2_{Assoc}}{15}&plus;\frac{L2_{CacheLine}}{128})]*ln(\frac{e^{cpi_{new}}-e^{cpi_{old}}}{e^{cpi_{new}}}&plus;e)" title="Cost = [8L1_{size}(1+\frac{L1_{Assoc}}{10} + \frac{L1_{CacheLine}}{64})+L2_{size}(1+\frac{L2_{Assoc}}{15}+\frac{L2_{CacheLine}}{128})]*ln(\frac{e^{cpi_{new}}-e^{cpi_{old}}}{e^{cpi_{new}}}+e)" /></a>
+
