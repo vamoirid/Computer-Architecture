@@ -288,3 +288,8 @@ The cost function is a polyominal of:
 * **CPI Gain** 
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=Cost&space;=&space;[8L1_{size}(1&plus;\frac{L1_{Assoc}}{10}&space;&plus;&space;\frac{L1_{CacheLine}}{64})&plus;L2_{size}(1&plus;\frac{L2_{Assoc}}{15}&plus;\frac{L2_{CacheLine}}{128})]*ln(\frac{e^{cpi_{new}}-e^{cpi_{old}}}{e^{cpi_{old}}}&plus;e)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Cost&space;=&space;[8L1_{size}(1&plus;\frac{L1_{Assoc}}{10}&space;&plus;&space;\frac{L1_{CacheLine}}{64})&plus;L2_{size}(1&plus;\frac{L2_{Assoc}}{15}&plus;\frac{L2_{CacheLine}}{128})]*ln(\frac{e^{cpi_{new}}-e^{cpi_{old}}}{e^{cpi_{old}}}&plus;e)" title="Cost = [8L1_{size}(1+\frac{L1_{Assoc}}{10} + \frac{L1_{CacheLine}}{64})+L2_{size}(1+\frac{L2_{Assoc}}{15}+\frac{L2_{CacheLine}}{128})]*ln(\frac{e^{cpi_{new}}-e^{cpi_{old}}}{e^{cpi_{old}}}+e)" /></a>
+
+
+
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=GAIN&space;=&space;ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}&plus;e)&space;\\&space;GAIN&space;=&space;\frac{1}{ln(\frac{CPI_{old}-CPI_{new}}{CPI_{new}}&plus;e)}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?GAIN&space;=&space;ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}&plus;e)&space;\\&space;GAIN&space;=&space;\frac{1}{ln(\frac{CPI_{old}-CPI_{new}}{CPI_{new}}&plus;e)}" title="GAIN = ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}+e) \\ GAIN = \frac{1}{ln(\frac{CPI_{old}-CPI_{new}}{CPI_{new}}+e)}" /></a>
