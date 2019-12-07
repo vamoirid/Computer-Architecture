@@ -277,7 +277,7 @@ In order to include the resulted CPI in the cost function we had to find a relat
   2) an almost linear function to +inf for values larger than 0 (Old CPI > New CPI) and 
   3) a logarithmic scale to zero for values smaller than 0 (Old CPI < New CPI).
   
-Taking all the above into account, the corresponding **CPI Gain** function is <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;ln(\frac{e^{cpi_{old}}-e^{cpi_{new}}}{e^{cpi_{old}}}&plus;e)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;ln(\frac{e^{cpi_{old}}-e^{cpi_{new}}}{e^{cpi_{old}}}&plus;e)" title="ln(\frac{e^{cpi_{old}}-e^{cpi_{new}}}{e^{cpi_{old}}}+e)" /></a>
+Taking all the above into account, the corresponding **CPI Gain** function is <a href="https://www.codecogs.com/eqnedit.php?latex=ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}&plus;e)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}&plus;e)" title="ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}+e)" /></a>
 
 ### 3.3 Generating the Function 
 The cost function is a polyominal of: 
@@ -287,9 +287,4 @@ The cost function is a polyominal of:
 * **Cache Line Size**
 * **CPI Gain** 
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=Cost&space;=&space;[8L1_{size}(1&plus;\frac{L1_{Assoc}}{10}&space;&plus;&space;\frac{L1_{CacheLine}}{64})&plus;L2_{size}(1&plus;\frac{L2_{Assoc}}{15}&plus;\frac{L2_{CacheLine}}{128})]*ln(\frac{e^{cpi_{new}}-e^{cpi_{old}}}{e^{cpi_{old}}}&plus;e)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Cost&space;=&space;[8L1_{size}(1&plus;\frac{L1_{Assoc}}{10}&space;&plus;&space;\frac{L1_{CacheLine}}{64})&plus;L2_{size}(1&plus;\frac{L2_{Assoc}}{15}&plus;\frac{L2_{CacheLine}}{128})]*ln(\frac{e^{cpi_{new}}-e^{cpi_{old}}}{e^{cpi_{old}}}&plus;e)" title="Cost = [8L1_{size}(1+\frac{L1_{Assoc}}{10} + \frac{L1_{CacheLine}}{64})+L2_{size}(1+\frac{L2_{Assoc}}{15}+\frac{L2_{CacheLine}}{128})]*ln(\frac{e^{cpi_{new}}-e^{cpi_{old}}}{e^{cpi_{old}}}+e)" /></a>
-
-
-
-
-<a href="https://www.codecogs.com/eqnedit.php?latex=GAIN&space;=&space;ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}&plus;e)&space;\\&space;GAIN&space;=&space;\frac{1}{ln(\frac{CPI_{old}-CPI_{new}}{CPI_{new}}&plus;e)}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?GAIN&space;=&space;ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}&plus;e)&space;\\&space;GAIN&space;=&space;\frac{1}{ln(\frac{CPI_{old}-CPI_{new}}{CPI_{new}}&plus;e)}" title="GAIN = ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}+e) \\ GAIN = \frac{1}{ln(\frac{CPI_{old}-CPI_{new}}{CPI_{new}}+e)}" /></a>
+<a href="https://www.codecogs.com/eqnedit.php?latex=Cost&space;=&space;[8L1_{size}(1&plus;\frac{L1_{Assoc}}{10}&space;&plus;&space;\frac{L1_{CacheLine}}{64})&plus;L2_{size}(1&plus;\frac{L2_{Assoc}}{15}&plus;\frac{L2_{CacheLine}}{128})]*ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}&plus;e)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Cost&space;=&space;[8L1_{size}(1&plus;\frac{L1_{Assoc}}{10}&space;&plus;&space;\frac{L1_{CacheLine}}{64})&plus;L2_{size}(1&plus;\frac{L2_{Assoc}}{15}&plus;\frac{L2_{CacheLine}}{128})]*ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}&plus;e)" title="Cost = [8L1_{size}(1+\frac{L1_{Assoc}}{10} + \frac{L1_{CacheLine}}{64})+L2_{size}(1+\frac{L2_{Assoc}}{15}+\frac{L2_{CacheLine}}{128})]*ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}+e)" /></a>
