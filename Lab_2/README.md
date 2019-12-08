@@ -217,7 +217,17 @@ The main results of the above graph are:
 
 **CPI**: 10.270554 
 
-The results of this benchmark are quite obvious with respect to what is going wrong. The L2 Cache Miss Rate is over 99.99% with a total number of 5.2M accesses. It absolutely needs enormous improvement in the L2 Cache Miss Rate. This can be done either with the increase of size, the increase of associativity or the increase in Cache Line size. All these three variables, depending on the way the memory accesses happen can improve dramatically the CPI. Moreover, we can see a 12% Miss Rate in L1 D-Cache with more than 86M accesses. This means that almost 900,000 accesses are misses and these lead to L2 Cache accesses. An improvement in L1 D-Cache maybe could reduce the total number of acceses in L2 which is the main reason for the extremely high CPI rate. L1 I-Cache Miss Rate is 0.002% which is almost perfect compared to the other 2.
+The results of this benchmark are quite obvious with respect to what is going wrong. The L2 Cache Miss Rate is over 99.99% with a total number of 5.2M accesses. It absolutely needs enormous improvement in the L2 Cache Miss Rate. This can be done either with the increase of size, the increase of associativity or the increase in Cache Line size. All these three variables, depending on the way the memory accesses happen can improve dramatically the CPI. Moreover, we can see a 12% Miss Rate in L1 D-Cache with more than 86M accesses. This means that almost 900,000 accesses are misses and these lead to L2 Cache accesses. An improvement in L1 D-Cache maybe could reduce the total number of acceses in L2 which is the main reason for the extremely high CPI rate. L1 I-Cache Miss Rate is 0.002% which is almost perfect compared to the other 2. The results are:
+
+| Cache Line Size 64 Bytes | Cache Line Size 128 Bytes |
+|:------------------------:|:-------------------------:|
+| ![sjeng 2.1 cacheline64](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/sjeng_21_cacheline64.png)| ![bzip 2.1 cacheline128](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/sjeng_21_cacheline128.png)| 
+
+The results that we generate from the above graphs are that:
+
+1. Increase in L1 Data-Cache Associativity or Increase in L2 Cache Associativity had no difference in CPI.
+2. Increase in L2 Cache size from 2MB to 4MB had a minor drecease in CPI number but nothing important.
+3. The change in Cache Line size from 64 Bytes to 128 Bytes managed to decrease the CPI from **10.3** to **6.8** which is a reduction of almost **34%**!
 
 #### 2.1.5 470.libm Benchmark Optimization
 
