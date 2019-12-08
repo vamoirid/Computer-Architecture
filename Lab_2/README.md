@@ -162,9 +162,7 @@ These are all the limitations and acceptable values that we can use in our simul
 
 **CPI**: 1.679650
 
-If we take a closer look at the results of the _bzip_ benchmark we can see that L1 I-Cache has a very low Miss Rate and also **5 times less** acceses compared to L1 D-Cache, which make us give a lot more attention to L1 D-Cache rather than to L1 I-Cache. Moreover, L1 D-Cache except for the high number in accesses has also a Miss Rate which is almost 1.5%. This amount of Miss Rate equals to more than 750,000 misses in L1 D-Cache which surely causes the CPU to slow down. Furthermore, L2 Cache has a Miss Rate of approximately 28% which corresponds to more than 200,000 misses in L2 cache which considerably slower than L1 Caches and so the miss penalty is a lot higher.
-
-The results of the above proposed changes in parameters are:
+If we take a closer look at the results of the _bzip_ benchmark we can see that L1 I-Cache has a very low Miss Rate and also **5 times less** acceses compared to L1 D-Cache, which make us give a lot more attention to L1 D-Cache rather than to L1 I-Cache. Moreover, L1 D-Cache except for the high number in accesses has also a Miss Rate which is almost 1.5%. This amount of Miss Rate equals to more than 750,000 misses in L1 D-Cache which surely causes the CPU to slow down. Furthermore, L2 Cache has a Miss Rate of approximately 28% which corresponds to more than 200,000 misses in L2 cache which considerably slower than L1 Caches and so the miss penalty is a lot higher. The corresponding results are below:
 
 | Cache Line Size 64 Bytes | Cache Line Size 128 Bytes |
 |:------------------------:|:-------------------------:|
@@ -174,7 +172,7 @@ There are some major findings from these benchmarks.
 1. It is obvious that the change in L2 Cache Associativity from 8-way to 16-way had minor changes in CPI (~0.001).  
 2. The increase in L1 D-Cache from 64kB to 128kB had major improvement in performance as it is shown that even a setup with L2@2MB & L1D@128kB is better than L2@4MB & L1D@64kB.  
 3. The increase in L1 D-Cache Associativity improved the CPI.  
-4. The Cache Line size is most probably the most important parameter. By changing it from 64 Bytes to 128 Bytes, every benchmark had a decrease in CPI of about 0.01-0.02.
+4. The Cache Line size is also one of the most important parameters. By changing it from 64 Bytes to 128 Bytes, every benchmark had a decrease in CPI of about 0.01-0.02.
 
 #### 2.1.2 429.mcf Benchmark Optimization
 
@@ -184,7 +182,15 @@ There are some major findings from these benchmarks.
 
 **CPI**: 1.299095
 
-In comparison with the previous benchmark there are a lot of differences regarding the CPI value. First of all, this benchmark has a considerably higher L1 I-Cache Miss Rate at 2.36% which in combination with the over 28 million accesses give us a total number of L1 I-Cache Misses to more than 600,000. We cannot neglect this high number of misses in L1 I-Cache and so upgrading the value or associativity of L1 I-Cache or the overall Cache Line Size. L1 D-Cache has a very low Miss Rate which is not going to cause any effect in the total CPI. Finally, even though L2 Cache has a considerable Miss Rate at 5.5% we cannot ignore the fact that L2 Cache has a total of only 725k accesses compared to the L1 Cache with a total of over 60M. This means that if the Miss Rate of L1 I-Cache is reduced then subsequently L2 Cache acceses are going to drop and therefore reduce the CPI.
+In comparison with the previous benchmark there are a lot of differences regarding the CPI value. First of all, this benchmark has a considerably higher L1 I-Cache Miss Rate at 2.36% which in combination with the over 28 million accesses give us a total number of L1 I-Cache Misses to more than 600,000. We cannot neglect this high number of misses in L1 I-Cache and so upgrading the value or associativity of L1 I-Cache or the overall Cache Line Size. L1 D-Cache has a very low Miss Rate which is not going to cause any effect in the total CPI. Finally, even though L2 Cache has a considerable Miss Rate at 5.5% we cannot ignore the fact that L2 Cache has a total of only 725k accesses compared to the L1 Cache with a total of over 60M. This means that if the Miss Rate of L1 I-Cache is reduced then subsequently L2 Cache acceses are going to drop and therefore reduce the CPI. The corresponding results are below:
+
+![mcf 2.1](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/mcf_21.png)
+
+What we understand from the above results is:  
+1. The combination of L1 Instruction-Cache size at 32kB with 2-way associativity had the worst results regarding the CPI.
+2. All the other combinations had the same results regarding the Cache Line size. The reason behind this is quite obvious if we take a look in some other parameters in _stats.txt_. 
+   * For the Cache Line size 64 Bytes and L1 I-Cache 32kB + 2-way Associativity we had an L2 Miss Rate of 5.5% in a total of 725k accesses while for all the other combinations with Cache Line size 64 Bytes we have an L2 Miss Rate of 71.2%(!) in a total of 56k accesses. Moreover the L1 I-Cache Miss Rate went to 0.00002 from 0.023 for the same number of accesses.
+   * For the Cache Line size 128 Bytes and L1 I-Cache 32kB + 2-way Associativity we had an L2 Miss Rate of 2% in a total of 984k accesses while for all the other combinations with Cache Line size 64 Bytes we have an L2 Miss Rate of 53.2%(!) in a total of 38k accesses. Moreover the L1 I-Cache Miss Rate went to 0.00002 from 0.035 for the same number of accesses.
 
 #### 2.1.3 456.hmmer Benchmark Optimization
 
