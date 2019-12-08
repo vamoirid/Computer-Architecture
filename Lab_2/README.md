@@ -200,7 +200,14 @@ What we understand from the above results is:
 
 **CPI**: 1.187917
 
-The CPI of this benchmark are already near the minimum possible number which is 1. The L1 I-Cache Miss Rate is almost 0.02%, L1 D-Cache Miss Rate is almost 0.16% while L2 Cache Miss Rate is 7.7%. Even though 7.7% seems like it could be improved, the total acceses in L2 were only 70k compare to 17M in L1 I-Cache and 44M in L1 D-Cache so even if we tried to reduce the L2 Cache Miss Rate the resulting CPI wouldn't get any better. The only thing that could possibly improve the CPI could be to add more space in L1 D-Cache and increase associativity in order to reduce the Miss Rate. Moreover if the spatial locality of values is high, an even bigger Cache Line size could help improve but in the end all these changes wouldn't be worth it in terms of cost.
+The CPI of this benchmark are already near the minimum possible number which is 1. The L1 I-Cache Miss Rate is almost 0.02%, L1 D-Cache Miss Rate is almost 0.16% while L2 Cache Miss Rate is 7.7%. Even though 7.7% seems like it could be improved, the total acceses in L2 were only 70k compare to 17M in L1 I-Cache and 44M in L1 D-Cache so even if we tried to reduce the L2 Cache Miss Rate the resulting CPI wouldn't get any better. The only thing that could possibly improve the CPI could be to add more space in L1 D-Cache and increase associativity in order to reduce the Miss Rate. Moreover if the spatial locality of values is high, an even bigger Cache Line size could help improve but in the end all these changes wouldn't be worth it in terms of cost. In the following tables the results are shown:
+
+![hmmer 2.1](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/hmmer_21.png)
+
+The main results of the above graph are:
+
+1. L1 Data-Cache Associativity didn't have any impact on the CPI.
+2. Cache Line size had larger impact than increase in L1 Data-Cache Size.
 
 #### 2.1.4 458.sjeng Benchmark Optimization
 
