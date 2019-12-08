@@ -237,7 +237,17 @@ The results that we generate from the above graphs are that:
 
 **CPI**: 3.493415
 
-The results of this benchmarks leads as to the same decisions like the previous one because they are quite alike. L2 Cache Miss Rate is over 99.99%, L2 Cache accesses are again too many with almost 1.5M accesses, L1 D-Cache has a Miss Rate of 6% which even though is not that much in combination with the 48M accesses resembles a lot the previous one and last but not least, L1 I-Cache has a Miss Rate of 0.009% which is too close to the previous benchmark. **So everything that we assumed in the previous benchmark applies here also.**
+The results of this benchmarks leads as to the same decisions like the previous one because they are quite alike. L2 Cache Miss Rate is over 99.99%, L2 Cache accesses are again too many with almost 1.5M accesses, L1 D-Cache has a Miss Rate of 6% which even though is not that much in combination with the 48M accesses resembles a lot the previous one and last but not least, L1 I-Cache has a Miss Rate of 0.009% which is too close to the previous benchmark. **So everything that we assumed in the previous benchmark applies here also.** 
+
+| Cache Line Size 64 Bytes | Cache Line Size 128 Bytes |
+|:------------------------:|:-------------------------:|
+| ![sjeng 2.1 cacheline64](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/libm_21_cacheline64.png)| ![bzip 2.1 cacheline128](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/libm_21_cacheline128.png)| 
+
+It is pretty obvious that the results generated from the graphs are **exactly the same with the previous benchmark as it was expected**.
+
+1. Increase in L1 Data-Cache Associativity or Increase in L2 Cache Associativity had no difference in CPI.
+2. Increase in L2 Cache size from 2MB to 4MB had a minor drecease in CPI number but nothing important.
+3. The change in Cache Line size from 64 Bytes to 128 Bytes managed to decrease the CPI from **3.49** to **2.58** which is a reduction of almost **26%**!
 
 ### 2.2 Effect of each parameter in CPI
 
