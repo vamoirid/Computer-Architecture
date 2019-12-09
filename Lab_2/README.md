@@ -409,6 +409,8 @@ Moreover here are the characteristics of the _Cheapest, Most Expensive, Best and
 |:-------------:|:----------------------:|
 | ![hmmer 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/hmmer_cpivscost.png)| ![hmmer 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/hmmer_relativecost.png)| 
 
+Due to the **extremely low CPI** of this Benchmark both Cost and Relative Cost are functions of CPI and Hardware respectively. The _Best_ Result here is also the _Cheapest_ and the _Worst_ Result is also the _Most Expensive_. The characteristics of the _Best_ are shown below:
+
 **L1 Instruction-Cache**: 32kB & 2-way Associative  
 **L1 Data-Cache**: 64kB & 2-way Associative  
 **L2 Cache**: 2MB & 8-way Associative  
@@ -429,6 +431,8 @@ Moreover here are the characteristics of the _Cheapest, Most Expensive, Best and
 |:-------------:|:----------------------:|
 | ![sjeng 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/sjeng_cpivscost.png)| ![sjeng 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/sjeng_relativecost.png)| 
 
+The above results clearly show the impact of the Cache Line at 128 Bytes vs Cache Line at 64 Bytes. It is not only the CPI value that is going down dramatically but also the Relative Cost. First of all we can see how the Cost raises even though CPI remain the same and we can also observe that the dramatic change in Relative Cost happens at exactly the change in Cache Line size from 64 to 128 Bytes as it was expected. Below are shown the setup parameters of the _Best_ option. It is interesting the fact that the only difference between the _Best_ and the _Cheapest_ is the Cache Line size. Every other change has so small impact that it is not considered valuable. Below are the charactestics of the _Best_:
+
 **L1 Instruction-Cache**: 32kB & 2-way Assocative  
 **L1 Data-Cache**: 64kB & 2-way Associative  
 **L2 Cache**: 2MB & 8-way Associative  
@@ -448,6 +452,8 @@ Moreover here are the characteristics of the _Cheapest, Most Expensive, Best and
 | Cost Function | Relative Cost Function |
 |:-------------:|:----------------------:|
 | ![sjeng 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/libm_cpivscost.png)| ![sjeng 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/libm_relativecost.png)| 
+
+As it happened with all the other comparisons that we did before, everything that we said about _sjeng_ stands also for _libm_. The major and only important difference in Cost, Cost vs Performance and CPI is the change of 64 Bytes Cache Line size to 128 Bytes.
 
 **L1 Instruction-Cache**: 32kB & 2-way Assocative  
 **L1 Data-Cache**: 64kB & 2-way Associative  
