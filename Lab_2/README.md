@@ -168,6 +168,8 @@ If we take a closer look at the results of the _bzip_ benchmark we can see that 
 |:------------------------:|:-------------------------:|
 | ![bzip 2.1 cacheline64](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bzip_21_cacheline64.png)| ![bzip 2.1 cacheline128](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bzip_21_cacheline128.png)| 
 
+**Best CPI**: 1.596642  
+
 There are some major findings from these benchmarks.   
 1. It is obvious that the change in L2 Cache Associativity from 8-way to 16-way had minor changes in CPI (~0.001).  
 2. The increase in L1 D-Cache from 64kB to 128kB had major improvement in performance as it is shown that even a setup with L2@2MB & L1D@128kB is better than L2@4MB & L1D@64kB.  
@@ -186,12 +188,14 @@ In comparison with the previous benchmark there are a lot of differences regardi
 
 ![mcf 2.1](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/mcf_21.png)
 
+**Best CPI**: 1.124752  
+
 What we understand from the above results is:  
 1. The combination of L1 Instruction-Cache size at 32kB with 2-way associativity had the worst results regarding the CPI.
 2. All the other combinations had the same results regarding the Cache Line size. The reason behind this is quite obvious if we take a look in some other parameters in _stats.txt_. 
    * For the Cache Line size 64 Bytes and L1 I-Cache 32kB + 2-way Associativity we had an L2 Miss Rate of 5.5% in a total of 725k accesses while for all the other combinations with Cache Line size 64 Bytes we have an L2 Miss Rate of 71.2%(!) in a total of 56k accesses. Moreover the L1 I-Cache Miss Rate went to 0.00002 from 0.023 for the same number of accesses.
    * For the Cache Line size 128 Bytes and L1 I-Cache 32kB + 2-way Associativity we had an L2 Miss Rate of 2% in a total of 984k accesses while for all the other combinations with Cache Line size 64 Bytes we have an L2 Miss Rate of 53.2%(!) in a total of 38k accesses. Moreover the L1 I-Cache Miss Rate went to 0.00002 from 0.035 for the same number of accesses.
-
+   
 #### 2.1.3 456.hmmer Benchmark Optimization
 
 |        | L2 Cache Miss Rate & Accesses | L1 I-Cache Miss Rate & Accesses | L1 D-Cache Miss Rate & Accesses |
@@ -203,6 +207,8 @@ What we understand from the above results is:
 The CPI of this benchmark are already near the minimum possible number which is 1. The L1 I-Cache Miss Rate is almost 0.02%, L1 D-Cache Miss Rate is almost 0.16% while L2 Cache Miss Rate is 7.7%. Even though 7.7% seems like it could be improved, the total acceses in L2 were only 70k compare to 17M in L1 I-Cache and 44M in L1 D-Cache so even if we tried to reduce the L2 Cache Miss Rate the resulting CPI wouldn't get any better. The only thing that could possibly improve the CPI could be to add more space in L1 D-Cache and increase associativity in order to reduce the Miss Rate. Moreover if the spatial locality of values is high, an even bigger Cache Line size could help improve but in the end all these changes wouldn't be worth it in terms of cost. In the following tables the results are shown:
 
 ![hmmer 2.1](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/hmmer_21.png)
+
+**CPI**: 1.18017
 
 The main results of the above graph are:
 
@@ -223,6 +229,8 @@ The results of this benchmark are quite obvious with respect to what is going wr
 |:------------------------:|:-------------------------:|
 | ![sjeng 2.1 cacheline64](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/sjeng_21_cacheline64.png)| ![bzip 2.1 cacheline128](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/sjeng_21_cacheline128.png)| 
 
+**Best CPI**: 6.794981
+
 The results that we generate from the above graphs are that:
 
 1. Increase in L1 Data-Cache Associativity or Increase in L2 Cache Associativity had no difference in CPI.
@@ -235,13 +243,15 @@ The results that we generate from the above graphs are that:
 |:------:|:-----------------------------:|:-------------------------------:|:-------------------------------:|
 | libm   | 0.999944 in 1,488,538         | 0.000094 in 5,959,471           | 0.060972 in 48,806,657          |
 
-**CPI**: 3.493415
+**Best CPI**: 3.493415
 
 The results of this benchmarks leads as to the same decisions like the previous one because they are quite alike. L2 Cache Miss Rate is over 99.99%, L2 Cache accesses are again too many with almost 1.5M accesses, L1 D-Cache has a Miss Rate of 6% which even though is not that much in combination with the 48M accesses resembles a lot the previous one and last but not least, L1 I-Cache has a Miss Rate of 0.009% which is too close to the previous benchmark. **So everything that we assumed in the previous benchmark applies here also.** 
 
 | Cache Line Size 64 Bytes | Cache Line Size 128 Bytes |
 |:------------------------:|:-------------------------:|
 | ![sjeng 2.1 cacheline64](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/libm_21_cacheline64.png)| ![bzip 2.1 cacheline128](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/libm_21_cacheline128.png)| 
+
+**Best CPI**: 2.576667
 
 It is pretty obvious that the results generated from the graphs are **exactly the same with the previous benchmark as it was expected**.
 
