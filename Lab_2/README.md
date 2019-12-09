@@ -365,7 +365,7 @@ Now that we have the _Cost Function_ and the _Relative Cost Function_ we can fin
 |:-------------:|:----------------------:|
 | ![bzip 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bzip_cpivscost.png)| ![bzip 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bzip_relativecost.png)| 
 
-What we see here is that the cost of construction is a linear or near exponential function to the CPI. The tradeoffs between Cost & CPI are clearly shown here because in order to reduce the CPI we need to increase the Cost noticeably. Below are shown the characteristics of the _Best CPI for Cost_ setup. The difference between the _Cheapest_ and the _Best_ is that the latter has a 8-way Associative L1 D-Cache while the former has 2-way Associative L1 D-Cache.  
+What we see here is that the cost of construction is a linear or near exponential function to the CPI. The tradeoffs between Cost & CPI are clearly shown here because in order to reduce the CPI we need to increase the Cost noticeably. In addition, we can clearly see in the _Relative Cost Function_ a pattern repeating itself. The first pattern is at Cache Line of 64 Bytes with 2MB L2 Cache while the second is at Cache Line 128 Bytes with 4MB of L2 Cache. We can clearly see the impact of these 2 because we can understand that the bigger the L2 Cache the costlier the application would be in terms of CPI for Cost. Below are shown the characteristics of the _Best CPI for Cost_ setup. The difference between the _Cheapest_ and the _Best_ is that the latter has a 8-way Associative L1 D-Cache while the former has 2-way Associative L1 D-Cache.  
 
 **L1 Instruction-Cache**: 32kB & 2-way Associative  
 **L1 Data-Cache**: 64kB & 8-way Associative  
@@ -386,6 +386,8 @@ Moreover here are the characteristics of the _Cheapest, Most Expensive, Best and
 | Cost Function | Relative Cost Function |
 |:-------------:|:----------------------:|
 | ![mcf 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/mcf_cpivscost.png)| ![mcf 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/mcf_relativecost.png)| 
+
+The above results are pretty much clear about the Cost vs Performance. There are two large spikes in the L1 I-Cache 32kB with 2-way Associativity for both 64 Bytes and 128 Bytes Cache Line. Every other result is almost near perfect and very close to the _Best_. The difference with the _Chepest_ is the 4-way Associative L1 D-Cache in constrast to the 2-way Associative of the _Cheapest_ and the 128 Bytes Cache Line in constrast to the 64 Bytes in the _Cheapest_. Below are shown the parameters of the _Best_ setup:
 
 **L1 Instruction-Cache**: 32kB & 4-way Associative  
 **L1 Data-Cache**: 64kB & 2-way Associative  
