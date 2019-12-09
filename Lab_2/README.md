@@ -326,7 +326,8 @@ L1 Cache is positioned as close to the processor as possible, thus the addition 
 * **Cache Line Size**  
 The increase of the Cache Line size takes advantage of spatial locality in order to reduce miss rate, but they make the memory a lot slower. So as we can understand the increase of Cache Line size in L1 Cache should be a lot costlier than that in L2 Cache because L1 Cache aims **exclusively for speed** while L2 Cache aims not only for speed but for capacity also. Every time that we need to load a new line we would load **2x** the amount of data if we double the amount of data in the Line. So for L1 Cache the coefficient is <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;(1&plus;\frac{CacheLine}{128})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;(1&plus;\frac{CacheLine}{128})" title="(1+\frac{CacheLine}{128})" /></a> while for L2 Cache is <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;(1&plus;\frac{CacheLine}{256})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;(1&plus;\frac{CacheLine}{256})" title="(1+\frac{CacheLine}{256})" /></a>.
 
-### 3.3 Generating the Function 
+### 3.3 Generating the Cost Function and analysing the Benchmarks' results.
+
 The cost function is a polyominal of: 
 
 * **L1 & L2 Cache Size**
@@ -351,4 +352,12 @@ So the final _Relative Cost Function_ is: <a href="https://www.codecogs.com/eqne
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=Cost&space;=&space;[10L1.D_{size}(1&plus;\frac{L1.D_{Assoc}}{10}&space;&plus;&space;\frac{CacheLine}{64})&plus;10L1.I_{size}(1&plus;\frac{L1.I_{Assoc}}{10}&space;&plus;&space;\frac{CacheLine}{64})&plus;L2_{size}(1&plus;\frac{L2_{Assoc}}{20}&plus;\frac{CacheLine}{128})]*[ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}&plus;e)]^{12}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Cost&space;=&space;[10L1.D_{size}(1&plus;\frac{L1.D_{Assoc}}{10}&space;&plus;&space;\frac{CacheLine}{64})&plus;10L1.I_{size}(1&plus;\frac{L1.I_{Assoc}}{10}&space;&plus;&space;\frac{CacheLine}{64})&plus;L2_{size}(1&plus;\frac{L2_{Assoc}}{20}&plus;\frac{CacheLine}{128})]*[ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}&plus;e)]^{12}" title="Cost = [10L1.D_{size}(1+\frac{L1.D_{Assoc}}{10} + \frac{CacheLine}{64})+10L1.I_{size}(1+\frac{L1.I_{Assoc}}{10} + \frac{CacheLine}{64})+L2_{size}(1+\frac{L2_{Assoc}}{20}+\frac{CacheLine}{128})]*[ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}+e)]^{12}" /></a>
 
+### 3.4 Parsing the Benchmarks' Results in the Cost Function.
 
+Now that we have the _Cost Function_ and the _Relative Cost Function_ we can finally parse the results from Chapter 2.1 in order to see the Cost vs Performance characteristic. 
+
+#### 3.4.1 401.bzip2 Benchmarks in Cost Function.
+
+| Cost Function | Relative Cost Function |
+|:-------------:|:----------------------:|
+| ![bzip 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bzip_cpivscost.png)| ![bzip 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bzip_relativecost.png)| 
