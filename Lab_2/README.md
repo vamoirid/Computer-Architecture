@@ -365,10 +365,14 @@ Now that we have the _Cost Function_ and the _Relative Cost Function_ we can fin
 |:-------------:|:----------------------:|
 | ![bzip 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bzip_cpivscost.png)| ![bzip 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bzip_relativecost.png)| 
 
+What we see here is that the cost of construction is a linear or near exponential function to the CPI. The tradeoffs between Cost & CPI are clearly shown here because in order to reduce the CPI we need to increase the Cost noticeably. Below are shown the characteristics of the _Best CPI for Cost_ setup. The difference between the _Cheapest_ and the _Best_ is that the latter has a 8-way Associative L1 D-Cache while the former has 2-way Associative L1 D-Cache.  
+
 **L1 Instruction-Cache**: 32kB & 2-way Associative  
 **L1 Data-Cache**: 64kB & 8-way Associative  
 **L2 Cache**: 2MB & 8-way Associative  
 **Cache Line**: 64 Bytes  
+
+Moreover here are the characteristics of the _Cheapest, Most Expensive, Best and Worst_.
 
 |                      | Benchmark No. | Cost    | CPI      |
 |:--------------------:|:-------------:|:-------:|:--------:|
@@ -388,6 +392,8 @@ Now that we have the _Cost Function_ and the _Relative Cost Function_ we can fin
 **L2 Cache**: 2MB & 8-way Associative  
 **Cache Line**: 128 Bytes
 
+Moreover here are the characteristics of the _Cheapest, Most Expensive, Best and Worst_.
+
 |                      | Benchmark No. | Cost    | CPI      |
 |:--------------------:|:-------------:|:-------:|:--------:|
 | Cheapest Setup       | 1             | 4198.4  | 1.299095 |
@@ -405,6 +411,8 @@ Now that we have the _Cost Function_ and the _Relative Cost Function_ we can fin
 **L1 Data-Cache**: 64kB & 2-way Associative  
 **L2 Cache**: 2MB & 8-way Associative  
 **Cache Line**: 64 Bytes  
+
+Moreover here are the characteristics of the _Cheapest, Most Expensive, Best and Worst_.
 
 |                      | Benchmark No. | Cost    | CPI      |
 |:--------------------:|:-------------:|:-------:|:--------:|
@@ -424,6 +432,8 @@ Now that we have the _Cost Function_ and the _Relative Cost Function_ we can fin
 **L2 Cache**: 2MB & 8-way Associative  
 **Cache Line**: 128 Bytes  
 
+Moreover here are the characteristics of the _Cheapest, Most Expensive, Best and Worst_.
+
 |                      | Benchmark No. | Cost    | CPI      |
 |:--------------------:|:-------------:|:-------:|:--------:|
 | Cheapest Setup       | 1             | 4198.4  | 10.27055 |
@@ -441,6 +451,8 @@ Now that we have the _Cost Function_ and the _Relative Cost Function_ we can fin
 **L1 Data-Cache**: 64kB & 2-way Associative  
 **L2 Cache**: 2MB & 8-way Associative  
 **Cache Line**: 128 Bytes  
+
+Moreover here are the characteristics of the _Cheapest, Most Expensive, Best and Worst_.
 
 |                      | Benchmark No. | Cost    | CPI      |
 |:--------------------:|:-------------:|:-------:|:--------:|
