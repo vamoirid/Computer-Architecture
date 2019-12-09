@@ -78,6 +78,9 @@ After running all of these benchmarks, there were some very interesting results 
 | sjeng  | 0.513528           | 10.270554                    | 0.999972           | 0.000020             | 0.121831             |
 | libm   | 0.174671           | 3.493415                     | 0.999944           | 0.000094             | 0.060972             |
 
+<img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/SimSeconds.png" height="250" width="288"/> <img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/CPI.png" height="250" width="288"/> <img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/L2CacheMR.png" height="250" width="288"/>
+<img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/L1iCacheMR.png" height="360" width="434" /> <img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/L1dCacheMR.png" height="360" width="434" />
+
 The results above show some very important information about the cache memory. The _sjeng_ and _libm_ benchmarks had the biggest elapsed simulation time and also the biggest CPI number. This happens because of the fact that the L2 Cache Miss Rate is over 99.99%. Every time that the CPU has a miss in the L2 Cache, there is a time penalty like the L1 Cache. Nevertheless, because of the fact that the L2 Cache is noticeably slower than L1 Cache, it is obvious that the miss-penalty for L2 Cache is a lot higher than this of L1 Cache. 
 
 If we thing about the basic equation for the calculation of the CPI
