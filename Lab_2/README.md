@@ -167,9 +167,7 @@ These are all the limitations and acceptable values that we can use in our simul
 
 If we take a closer look at the results of the _bzip_ benchmark we can see that L1 I-Cache has a very low Miss Rate and also **5 times less** acceses compared to L1 D-Cache, which make us give a lot more attention to L1 D-Cache rather than to L1 I-Cache. Moreover, L1 D-Cache except for the high number in accesses has also a Miss Rate which is almost 1.5%. This amount of Miss Rate equals to more than 750,000 misses in L1 D-Cache which surely causes the CPU to slow down. Furthermore, L2 Cache has a Miss Rate of approximately 28% which corresponds to more than 200,000 misses in L2 cache which considerably slower than L1 Caches and so the miss penalty is a lot higher. The corresponding results are below:
 
-| Cache Line Size 64 Bytes | Cache Line Size 128 Bytes |
-|:------------------------:|:-------------------------:|
-| ![bzip 2.1 cacheline64](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bzip_21_cacheline64.png)| ![bzip 2.1 cacheline128](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bzip_21_cacheline128.png)| 
+<img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bzip_21_cacheline64.png" height="360" width="430" /><img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bzip_21_cacheline128.png" height = "360" width="430" />  
 
 **Best CPI**: 1.596642  
 
@@ -228,9 +226,7 @@ The main results of the above graph are:
 
 The results of this benchmark are quite obvious with respect to what is going wrong. The L2 Cache Miss Rate is over 99.99% with a total number of 5.2M accesses. It absolutely needs enormous improvement in the L2 Cache Miss Rate. This can be done either with the increase of size, the increase of associativity or the increase in Cache Line size. All these three variables, depending on the way the memory accesses happen can improve dramatically the CPI. Moreover, we can see a 12% Miss Rate in L1 D-Cache with more than 86M accesses. This means that almost 900,000 accesses are misses and these lead to L2 Cache accesses. An improvement in L1 D-Cache maybe could reduce the total number of acceses in L2 which is the main reason for the extremely high CPI rate. L1 I-Cache Miss Rate is 0.002% which is almost perfect compared to the other 2. The results are:
 
-| Cache Line Size 64 Bytes | Cache Line Size 128 Bytes |
-|:------------------------:|:-------------------------:|
-| ![sjeng 2.1 cacheline64](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/sjeng_21_cacheline64.png)| ![bzip 2.1 cacheline128](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/sjeng_21_cacheline128.png)| 
+<img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/sjeng_21_cacheline64.png" height="360" width="430" /><img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/sjeng_21_cacheline128.png" height="340" width="430"/>   
 
 **Best CPI**: 6.794981
 
@@ -250,9 +246,7 @@ The results that we generate from the above graphs are that:
 
 The results of this benchmarks leads as to the same decisions like the previous one because they are quite alike. L2 Cache Miss Rate is over 99.99%, L2 Cache accesses are again too many with almost 1.5M accesses, L1 D-Cache has a Miss Rate of 6% which even though is not that much in combination with the 48M accesses resembles a lot the previous one and last but not least, L1 I-Cache has a Miss Rate of 0.009% which is too close to the previous benchmark. **So everything that we assumed in the previous benchmark applies here also.** 
 
-| Cache Line Size 64 Bytes | Cache Line Size 128 Bytes |
-|:------------------------:|:-------------------------:|
-| ![sjeng 2.1 cacheline64](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/libm_21_cacheline64.png)| ![bzip 2.1 cacheline128](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/libm_21_cacheline128.png)| 
+<img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/libm_21_cacheline64.png" height="360" width="430" /><img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/libm_21_cacheline128.png" height="360" width="430"/>   
 
 **Best CPI**: 2.576667
 
