@@ -356,20 +356,26 @@ So the final _Relative Cost Function_ is: <a href="https://www.codecogs.com/eqne
 
 Now that we have the _Cost Function_ and the _Relative Cost Function_ we can finally parse the results from Chapter 2.1 in order to see the Cost vs Performance characteristic. 
 
-#### 3.4.1 401.bzip2 Benchmarks in Cost Function.
+#### 3.4.1 401.bzip2 Benchmark Setup in Cost Function.
 
 | Cost Function | Relative Cost Function |
 |:-------------:|:----------------------:|
 | ![bzip 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bzip_cpivscost.png)| ![bzip 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bzip_relativecost.png)| 
 
-#### 3.4.2 429.mcf Benchmarks in Cost Function.
+#### 3.4.2 429.mcf Benchmark Setup in Cost Function.
 
 | Cost Function | Relative Cost Function |
 |:-------------:|:----------------------:|
 | ![mcf 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/mcf_cpivscost.png)| ![mcf 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/mcf_relativecost.png)| 
 
-#### 3.4.3 456.hmmer Benchmarks in Cost Function.
+#### 3.4.3 456.hmmer Benchmark Setup in Cost Function.
 
 | Cost Function | Relative Cost Function |
 |:-------------:|:----------------------:|
 | ![hmmer 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/hmmer_cpivscost.png)| ![hmmer 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/hmmer_relativecost.png)| 
+
+#### 3.4.4 458.sjeng Benchmark Setup in Cost Function.
+
+| Cost Function | Relative Cost Function |
+|:-------------:|:----------------------:|
+| ![sjeng 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/sjeng_cpivscost.png)| ![sjeng 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/sjeng_relativecost.png)| 
