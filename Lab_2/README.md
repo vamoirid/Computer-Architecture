@@ -361,7 +361,12 @@ Now that we have the _Cost Function_ and the _Relative Cost Function_ we can fin
 | Cost Function | Relative Cost Function |
 |:-------------:|:----------------------:|
 | ![bzip 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bzip_cpivscost.png)| ![bzip 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bzip_relativecost.png)| 
-  
+
+**L1 Instruction-Cache**: 32kB & 2-way Associative  
+**L1 Data-Cache**: 64kB & 8-way Associative  
+**L2 Cache**: 2MB & 8-way Associative  
+**Cache Line**: 64 Bytes  
+
 |                      | Benchmark No. | Cost    | CPI      |
 |:--------------------:|:-------------:|:-------:|:--------:|
 | Cheapest Setup       | 1             | 4198.4  | 1.67965  |
@@ -374,6 +379,11 @@ Now that we have the _Cost Function_ and the _Relative Cost Function_ we can fin
 | Cost Function | Relative Cost Function |
 |:-------------:|:----------------------:|
 | ![mcf 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/mcf_cpivscost.png)| ![mcf 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/mcf_relativecost.png)| 
+
+**L1 Instruction-Cache**: 32kB & 4-way Associative  
+**L1 Data-Cache**: 64kB & 2-way Associative  
+**L2 Cache**: 2MB & 8-way Associative  
+**Cache Line**: 128 Bytes
 
 |                      | Benchmark No. | Cost    | CPI      |
 |:--------------------:|:-------------:|:-------:|:--------:|
@@ -388,6 +398,11 @@ Now that we have the _Cost Function_ and the _Relative Cost Function_ we can fin
 |:-------------:|:----------------------:|
 | ![hmmer 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/hmmer_cpivscost.png)| ![hmmer 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/hmmer_relativecost.png)| 
 
+**L1 Instruction-Cache**: 32kB & 2-way Associative  
+**L1 Data-Cache**: 64kB & 2-way Associative  
+**L2 Cache**: 2MB & 8-way Associative  
+**Cache Line**: 64 Bytes  
+
 |                      | Benchmark No. | Cost    | CPI      |
 |:--------------------:|:-------------:|:-------:|:--------:|
 | Cheapest Setup       | 1             | 4198.4  | 1.187917 |
@@ -395,12 +410,16 @@ Now that we have the _Cost Function_ and the _Relative Cost Function_ we can fin
 | Best CPI for Cost    | 1             | 4198.4  | 1.187917 |
 | Worst CPI for Cost   | 16            | 6886.4  | 1.180170 |
 
-
 #### 3.4.4 458.sjeng Benchmark Setups in Cost Function.
 
 | Cost Function | Relative Cost Function |
 |:-------------:|:----------------------:|
 | ![sjeng 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/sjeng_cpivscost.png)| ![sjeng 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/sjeng_relativecost.png)| 
+
+**L1 Instruction-Cache**: 32kB & 2-way Assocative  
+**L1 Data-Cache**: 64kB & 2-way Associative  
+**L2 Cache**: 2MB & 8-way Associative  
+**Cache Line**: 128 Bytes  
 
 |                      | Benchmark No. | Cost    | CPI      |
 |:--------------------:|:-------------:|:-------:|:--------:|
@@ -414,6 +433,11 @@ Now that we have the _Cost Function_ and the _Relative Cost Function_ we can fin
 | Cost Function | Relative Cost Function |
 |:-------------:|:----------------------:|
 | ![sjeng 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/libm_cpivscost.png)| ![sjeng 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/libm_relativecost.png)| 
+
+**L1 Instruction-Cache**: 32kB & 2-way Assocative  
+**L1 Data-Cache**: 64kB & 2-way Associative  
+**L2 Cache**: 2MB & 8-way Associative  
+**Cache Line**: 128 Bytes  
 
 |                      | Benchmark No. | Cost    | CPI      |
 |:--------------------:|:-------------:|:-------:|:--------:|
