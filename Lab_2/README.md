@@ -361,6 +361,13 @@ Now that we have the _Cost Function_ and the _Relative Cost Function_ we can fin
 | Cost Function | Relative Cost Function |
 |:-------------:|:----------------------:|
 | ![bzip 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bzip_cpivscost.png)| ![bzip 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bzip_relativecost.png)| 
+  
+|                      | Benchmark No. | Cost    | CPI      |
+|:--------------------:|:-------------:|:-------:|:--------:|
+| Cheapest Setup       | 1             | 4198.4  | 1.67965  |
+| Most Expensive Setup | 64            | 11187.2 | 1.596642 |
+| Best CPI for Cost    | 3             | 4352    | 1.65759  |
+| Worst CPI for Cost   | 57            | 9395.2  | 1.647684 |
 
 #### 3.4.2 429.mcf Benchmark Setups in Cost Function.
 
@@ -368,11 +375,26 @@ Now that we have the _Cost Function_ and the _Relative Cost Function_ we can fin
 |:-------------:|:----------------------:|
 | ![mcf 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/mcf_cpivscost.png)| ![mcf 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/mcf_relativecost.png)| 
 
+|                      | Benchmark No. | Cost    | CPI      |
+|:--------------------:|:-------------:|:-------:|:--------:|
+| Cheapest Setup       | 1             | 4198.4  | 1.299095 |
+| Most Expensive Setup | 24            | 7424    | 1.124752 |
+| Best CPI for Cost    | 16            | 5120    | 1.124828 |
+| Worst CPI for Cost   | 13            | 5094.4  | 1.330534 |
+
 #### 3.4.3 456.hmmer Benchmark Setups in Cost Function.
 
 | Cost Function | Relative Cost Function |
 |:-------------:|:----------------------:|
 | ![hmmer 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/hmmer_cpivscost.png)| ![hmmer 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/hmmer_relativecost.png)| 
+
+|                      | Benchmark No. | Cost    | CPI      |
+|:--------------------:|:-------------:|:-------:|:--------:|
+| Cheapest Setup       | 1             | 4198.4  | 1.187917 |
+| Most Expensive Setup | 16            | 6886.4  | 1.180170 |
+| Best CPI for Cost    | 1             | 4198.4  | 1.187917 |
+| Worst CPI for Cost   | 16            | 6886.4  | 1.180170 |
+
 
 #### 3.4.4 458.sjeng Benchmark Setups in Cost Function.
 
@@ -380,8 +402,22 @@ Now that we have the _Cost Function_ and the _Relative Cost Function_ we can fin
 |:-------------:|:----------------------:|
 | ![sjeng 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/sjeng_cpivscost.png)| ![sjeng 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/sjeng_relativecost.png)| 
 
+|                      | Benchmark No. | Cost    | CPI      |
+|:--------------------:|:-------------:|:-------:|:--------:|
+| Cheapest Setup       | 1             | 4198.4  | 10.27055 |
+| Most Expensive Setup | 64            | 11187.2 | 6.795293 |
+| Best CPI for Cost    | 33            | 5094.4  | 6.799471 |
+| Worst CPI for Cost   | 32            | 9523.2  | 10.26553 |
+
 #### 3.4.5 470.libm Benchmark Setups in Cost Function.
 
 | Cost Function | Relative Cost Function |
 |:-------------:|:----------------------:|
 | ![sjeng 3.4 cpi vs cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/libm_cpivscost.png)| ![sjeng 3.4 relative cost](https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/libm_relativecost.png)| 
+
+|                      | Benchmark No. | Cost    | CPI      |
+|:--------------------:|:-------------:|:-------:|:--------:|
+| Cheapest Setup       | 1             | 4198.4  | 3.493415 |
+| Most Expensive Setup | 64            | 11187.2 | 2.576667 |
+| Best CPI for Cost    | 33            | 5094.4  | 2.581299 |
+| Worst CPI for Cost   | 32            | 9523.2  | 3.489639 |
