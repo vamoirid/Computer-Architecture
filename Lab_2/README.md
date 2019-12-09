@@ -326,14 +326,6 @@ L1 Cache is positioned as close to the processor as possible, thus the addition 
 * **Cache Line Size**  
 The increase of the Cache Line size takes advantage of spatial locality in order to reduce miss rate, but they make the memory a lot slower. So as we can understand the increase of Cache Line size in L1 Cache should be a lot costlier than that in L2 Cache because L1 Cache aims **exclusively for speed** while L2 Cache aims not only for speed but for capacity also. Every time that we need to load a new line we would load **2x** the amount of data if we double the amount of data in the Line. So for L1 Cache the coefficient is <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;(1&plus;\frac{CacheLine}{128})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;(1&plus;\frac{CacheLine}{128})" title="(1+\frac{CacheLine}{128})" /></a> while for L2 Cache is <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;(1&plus;\frac{CacheLine}{256})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;(1&plus;\frac{CacheLine}{256})" title="(1+\frac{CacheLine}{256})" /></a>.
 
-* **CPI Gain**  
-In order to include the resulted CPI in the cost function we had to find a relationship between the cheapest CPI value and the new CPI value. The cheapest CPI value is the CPI value of the cheapest setup and stands as a reference point for the every other setup. First of all this value shouldn't be just the delta CPI but a percentage of it. For example a change from 10 to 9 CPI shouldn't be as powerful as a change from 2.5 to 1.5. That's why we used the percentage of CPI change inside a logarithmic function with the addition of **e** in order to have: 
-  1) a coefficient of 1 for no change in CPI (Cheap CPI = New CPI) 
-  2) an almost linear function to +inf for values larger than 0 (Cheap CPI > New CPI) and 
-  3) a logarithmic scale to zero for values smaller than 0 (Cheap CPI < New CPI).
-  
-Taking all the above into account, the corresponding **CPI Gain** function is <a href="https://www.codecogs.com/eqnedit.php?latex=ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}&plus;e)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}&plus;e)" title="ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}+e)" /></a>
-
 ### 3.3 Generating the Function 
 The cost function is a polyominal of: 
 
@@ -342,3 +334,21 @@ The cost function is a polyominal of:
 * **Cache Line Size** 
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=Cost&space;=&space;[10L1.D_{size}(1&plus;\frac{L1.D_{Assoc}}{20}&space;&plus;&space;\frac{CacheLine}{128})&plus;10L1.I_{size}(1&plus;\frac{L1.I_{Assoc}}{20}&space;&plus;&space;\frac{CacheLine}{128})&plus;L2_{size}(1&plus;\frac{L2_{Assoc}}{40}&plus;\frac{CacheLine}{256})]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Cost&space;=&space;[10L1.D_{size}(1&plus;\frac{L1.D_{Assoc}}{20}&space;&plus;&space;\frac{CacheLine}{128})&plus;10L1.I_{size}(1&plus;\frac{L1.I_{Assoc}}{20}&space;&plus;&space;\frac{CacheLine}{128})&plus;L2_{size}(1&plus;\frac{L2_{Assoc}}{40}&plus;\frac{CacheLine}{256})]" title="Cost = [10L1.D_{size}(1+\frac{L1.D_{Assoc}}{20} + \frac{CacheLine}{128})+10L1.I_{size}(1+\frac{L1.I_{Assoc}}{20} + \frac{CacheLine}{128})+L2_{size}(1+\frac{L2_{Assoc}}{40}+\frac{CacheLine}{256})]" /></a>
+
+Except for the _Cost Function_ we need to generate also the _Relative Cost Function_. This function is in fact a superset of the general _Cost Function_ because it does not only take into account the cost of the parts, but it also correlates the change in the CPI. So we need to find a corresponding _CPI Gain_ in order to embed it inside the _Cost Function_ and generate a new one.
+
+* **CPI Gain**  
+In order to include the resulted CPI in the cost function we had to find a relationship between the cheapest CPI value and the new CPI value. The cheapest CPI value is the CPI value of the cheapest setup and stands as a reference point for the every other setup. First of all this value shouldn't be just the delta CPI but a percentage of it. For example a change from 10 to 9 CPI shouldn't be as powerful as a change from 2.5 to 1.5. That's why we used the percentage of CPI change inside a logarithmic function with the addition of **e** in order to have: 
+  1) a coefficient of 1 for no change in CPI (Cheap CPI = New CPI) 
+  2) an almost linear function to +inf for values larger than 0 (Cheap CPI > New CPI) and 
+  3) a logarithmic scale to zero for values smaller than 0 (Cheap CPI < New CPI).
+  
+Taking all the above into account, the corresponding **CPI Gain** function is <a href="https://www.codecogs.com/eqnedit.php?latex=ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}&plus;e)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}&plus;e)" title="ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}+e)" /></a>
+
+In order to give a stronger magnitude in the resulting _CPI Gain_ function, we are going to rise it in the power of 12. This is going to make the change in CPI a lot stronger with respect to the hardware changes.
+
+So the final _Relative Cost Function_ is: <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;COST&space;*&space;CPI\_Gain^{12}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;COST&space;*&space;CPI\_Gain^{12}" title="COST * CPI\_Gain^{12}" /></a> or expanded:
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=Cost&space;=&space;[10L1.D_{size}(1&plus;\frac{L1.D_{Assoc}}{10}&space;&plus;&space;\frac{CacheLine}{64})&plus;10L1.I_{size}(1&plus;\frac{L1.I_{Assoc}}{10}&space;&plus;&space;\frac{CacheLine}{64})&plus;L2_{size}(1&plus;\frac{L2_{Assoc}}{20}&plus;\frac{CacheLine}{128})]*[ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}&plus;e)]^{12}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Cost&space;=&space;[10L1.D_{size}(1&plus;\frac{L1.D_{Assoc}}{10}&space;&plus;&space;\frac{CacheLine}{64})&plus;10L1.I_{size}(1&plus;\frac{L1.I_{Assoc}}{10}&space;&plus;&space;\frac{CacheLine}{64})&plus;L2_{size}(1&plus;\frac{L2_{Assoc}}{20}&plus;\frac{CacheLine}{128})]*[ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}&plus;e)]^{12}" title="Cost = [10L1.D_{size}(1+\frac{L1.D_{Assoc}}{10} + \frac{CacheLine}{64})+10L1.I_{size}(1+\frac{L1.I_{Assoc}}{10} + \frac{CacheLine}{64})+L2_{size}(1+\frac{L2_{Assoc}}{20}+\frac{CacheLine}{128})]*[ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}+e)]^{12}" /></a>
+
+
