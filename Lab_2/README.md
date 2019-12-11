@@ -1,4 +1,4 @@
-# Report for Lab2
+# Design Space Exploration with gem5
 ## 1. Run SPEC CPU2006 Benchmarks at gem5.
 
 The 2nd Laboratory is about running various benchmarks in **gem5** for different systems, that vary in Cache Memory parameters. These benchmarks are a subset of **SPEC CPU2006** benchmark suite.
