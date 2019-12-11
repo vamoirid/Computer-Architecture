@@ -1,4 +1,4 @@
-# Report for Lab3
+# Energy-Delay-Area Product Optimization (gem5 + McPAT)
 
 ## 1. Familiarization with McPAT  
 
@@ -17,4 +17,12 @@ where:
    * <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;V_{dd}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;V_{dd}" title="V_{dd}" /></a> is the Supply Voltage of the Processor.
    * <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\Delta&space;V" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\Delta&space;V" title="\Delta V" /></a> is the voltage swing during switching.
    * <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;f_{clk}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;f_{clk}" title="f_{clk}" /></a> is the CPU Clock Frequency.
-   * <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\alpha" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\alpha" title="\alpha" /></a> is an activity factor which indicates the fraction of total circuit capacitance being charged during aclock cycle.
+   * <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\alpha" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\alpha" title="\alpha" /></a> is an activity factor which indicates the fraction of total circuit capacitance being charged during a clock cycle.  
+* **Short Circuit Power**: It is the power that flows through 2 or more transistors when they are a little slower with respect to each other and conduct simultaneously for an incredibly small amount of time. Even though it is not a variable in the generated info of McPAT, _Short Circuit Power_ is calculated and added to the total _Dynamic Power_ because in fact, when a transistor switches it consumes both _Dynamic_ and _Short Circuit_ Power.
+* **Leakage Power**: This is the _Static_ power that is consumed by the processors. It is consumed either the Processor is running a program or it just stalls. It is caused because of the fact that transistors have some imperfections in their body which let current to flow through them (either Gate or Drain-Source or Substrate). The different leakage currents are:
+   1. _Subthreshold Current_, which is the current that flows through Drain-Source when a transistor is supposed to be "OFF".
+   2. _Gate Leakage Current_, which is the current that flows through Gate-Substrate due to the oxide which makes it act as a dielectric.
+   3. _Diode Reverse Bias Current_, which flows through Drain-Substrate or Source-Substrate due to the fact that the opposite charges.
+   4. _Gate induced Current_, which flows through Gate-Drain due to construction restrictions.
+   
+The first two are a lot more devastating than the latter ones. McPAT generates results for the first two for this reason but it includes equations including the latter ones also.
