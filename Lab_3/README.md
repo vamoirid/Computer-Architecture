@@ -25,4 +25,11 @@ where:
    3. _Diode Reverse Bias Current_, which flows through Drain-Substrate or Source-Substrate due to the fact that the opposite charges.
    4. _Gate induced Current_, which flows through Gate-Drain due to construction restrictions.
    
-The first two are a lot more devastating than the latter ones. McPAT generates results for the first two for this reason but it includes equations including the latter ones also.
+The first two are a lot more dominanant than the latter ones. McPAT generates results for the first two for this reason but it includes equations including the latter ones also.
+
+The power consumed due to the capacitive load of the switching transistors is analogous to the number of transistors that are switching. If we run a program that requires more transistors to be switched ON/OFF we would result in of course higher **Peak Dynamic**. The **Total Leakage** is analogous to the number of transistors that are **not** switching because as we said it is the static power of the Processor. So a program which would require a lot less transistors switching than another, would have a lot more transistors switched OFF becuase they would be unused.. This means that these transistors would let some leakage current pass through as it was mentioned before.  
+
+Moreover, there is a variable in the generated info with the name **Runtime Dynamic**. This variable is in fact the total energy required by a program during processing divided by the total simulation time. So if we decided to run the same program 2 or more times consecutively, and we assume that every time the processor behaves exactly the same as the previous one, then we would see the following results:
+   1. **Peak Dynamic** would be the **same** as running the program just once because the maximum number of transistors switching would remain the same during the different executions of the program.
+   2. **Runtime Dynamic** would be the **same** as running the program just once because theoretically every time the Processor would do the same calculations with the same transistors so the energy needed would be the same and the execution time would also be the same.
+   3. **Total Leakage** would be **different**, with its value being _n_ times higher where _n_ is the number of times that we run the program. 
