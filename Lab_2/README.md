@@ -462,3 +462,7 @@ Moreover here are the characteristics of the _Cheapest, Most Expensive, Best and
 | Most Expensive Setup | 64            | 11187.2 | 2.576667 |
 | Best CPI for Cost    | 33            | 5094.4  | 2.581299 |
 | Worst CPI for Cost   | 32            | 9523.2  | 3.489639 |
+
+## 4. Conclusion  
+
+This assignment was a lot more demanding than the previous one in many ways. Every question needed searching in the generated files and also in the bibliography in order not only to be able to answer it, but also to be able to understand it correctly. We had to do a deep dive inside the CPU Core an try to find ways to improve our system. We managed to learn a lot of things about the basic internal working of a CPU core and how the Cache Memory can be a very crucial factor in the total performance of the system. The first part of this assignment gave us a more general view about how every system inside the Core communicates. Moreover we could learn again how to process the generated files in order to get our results. The second part was without a doubt the most difficult one. We had to improve the results of the benchmarks but in a way that we would do as little simulations as possible. Finally, the third part made us search a little bit more about the Cache Memory parameters but this time not about performance, but for cost estimation. By using these results we managed to get some important results about the cost of our improvements and how each of the parameters affect the total cost of the product.
