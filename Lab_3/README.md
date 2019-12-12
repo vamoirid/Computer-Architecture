@@ -85,3 +85,15 @@ For the Cortex-A9 the results are: <a href="https://www.codecogs.com/eqnedit.php
 While for the Xeon Tulsa the results are: <a href="https://www.codecogs.com/eqnedit.php?latex=\small&space;Energy&space;=&space;[72.9199&space;W&space;&plus;&space;36.8319W]*t&space;sec&space;=&space;109.7518t&space;J" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\small&space;Energy&space;=&space;[72.9199&space;W&space;&plus;&space;36.8319W]*t&space;sec&space;=&space;109.7518t&space;J" title="\small Energy = [72.9199 W + 36.8319W]*t sec = 109.7518t J" /></a>  
 
 If we take into account the fact that after the execution of the program, the _Xeon Tulsa_ is not going to turn off, but is going to stall until the ARM finishes its execution, then we need to add to the _Subthreshold Leakage with Power Gating_ for **ALL** the transistors of the CPU for the _39*t_ seconds. The calculations show that the added energy is > 16.3977*39t which is extremely higher than the _122.76868t Joules_ of the ARM Cortex-A9.
+
+## 2. gem5 + McPAT: Searching for EDAP Optimization
+
+We are going to provide **McPAT** with the generated files of our previous **SPEC CPU2006** Benchmarks which we run in **gem5** in order to see how each _Cache Memory_ parameter affects the EDA Product.
+
+### 2.1 Energy-Delay-Area calculations
+
+We need to extract the values of these variables either in _gem5_ or _McPAT_ generated informations.
+
+* **Energy**  _(units in Joules)_: Energy can be calculated by the equation <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;\small&space;[Runtime\_Dynamic&space;&plus;&space;Total\_Leakage]&space;*&space;Simulation\_Time" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;\small&space;[Runtime\_Dynamic&space;&plus;&space;Total\_Leakage]&space;*&space;Simulation\_Time" title="\small [Runtime\_Dynamic + Total\_Leakage] * Simulation\_Time" /></a>.
+* **Delay** _(units in seconds)_: It is the _total simulation seconds_ given in stats.txt from _gem5_. 
+* **Area** _(units in mm^2)_: It is given as an output of _McPAT_. 
