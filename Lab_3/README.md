@@ -33,3 +33,55 @@ Moreover, there is a variable in the generated info with the name **Runtime Dyna
    1. **Peak Dynamic** would be the **same** as running the program just once because the maximum number of transistors switching would remain the same during the different executions of the program.
    2. **Runtime Dynamic** would be the **same** as running the program just once because theoretically every time the Processor would do the same calculations with the same transistors so the energy needed would be the same and the execution time would also be the same.
    3. **Total Leakage** would be **different**, with its value being _n_ times higher where _n_ is the number of times that we run the program. 
+
+### 1.2 Low Power vs High Power Processor and Energy Efficiency
+
+In a situation that we had 2 Processors, one at **5W** and one at **40W**, and we needed to find a way in which the latter one could drain a battery slower than the first one, we would need to make it a lot more **Energy Efficient** than the first one. There are several ways in order to make a Processor more Energy Efficient. 
+* **Static Power** or else **Leakage** in a CPU could be reduced mainly with the use of less leaky transistors. Less leaky transistors mean less _Leakage_ but also mean slower switching which could make the CPU slower. Another way that could be implemented is to reduce or even cut-off the power in the regions of the CPU that are not used in order to reduce the _Leakage_ in the OFF state.
+* **Dynamic Power** can be manipulated with a lot more flexibility than the _Static Power_. 
+   * First of all the voltage of the CPU could be scaled down in some sections of it or even more to the whole chip when the lower execution time is not need that much.
+   * Moreover we could reduce the switching frequency of the majority of the transistors in order to reduce the short circuit current and the total current for switching the state of the transistors.  
+   
+The way to achieve these two is to create a more sophisticated **DVFS Hnadler** (**D**ynamic **V**oltage and **F**requency **S**caling) which could reduce frequency and voltage in way that would improve the energy efficiency of the Processor without affecting its performance.
+
+Even though **McPAT** gives us all the appropriate information about power, it does not give us the _total simulation time_ which is necessary in order to calculate the performance of a given processor. This information could be found and used in a **gem5** + **McPat** collaboration.
+
+### 1.3 Xeon vs ARM Cortex-A9 Energy Efficiency
+
+McPAT has build in information on some commercial processors such as _Xeon Tulsa_ and _Cortex-A9 2GHz_. We are going to run simulations for these two processors in order to compare them in terms of Energy Efficiency. Because of the fact that we do not have the Total Runtimes of the programs executed on the Processors, we are going to assume completely arbitrary that Xeon is 40 times faster than the A9. For the commands we are going to use ```-print_level 1``` because it generates all the necessary information and we are going to save the results in a text file named after the name of the processor.
+
+For Xeon we execute the command:
+```bash 
+./mcpat -infile ProcessorDescriptionFiles/Xeon.xml -print_level 1 > Xeon.txt
+```
+
+And for the Cortex-A9 at 2GHz we use:
+```bash
+./mcpat -infile ProcessorDescriptionFiles/ARM_A9_2GHz.xml -print_level 1 > ARM_A9_2GHz.txt
+```
+
+The results of the above simulations are shown in the table below:
+
+|                                        | Xeon Tulsa   | ARM Cortex-A9 |
+|:--------------------------------------:|:------------:|:-------------:|
+| Technology                             | 65nm         | 40nm          |
+| Clock Frequency                        | 3.4 GHz      | 2 GHz         |
+| Area                                   | 410.507 mm^2 | 5.39698 mm^2  |
+| Peak Power                             | 134.938 W    | 1.74189 W     |
+| Total Leakage                          | 36.8319 W    | 0.108687 W    |
+| Peak Dynamic                           | 98.1063 W    | 1.6332 W      |
+| Subthreshold Leakage                   | 35.1632 W    | 0.0523094 W   |
+| Subthreshold Leakage with power gating | 16.3977 W    | -             |
+| Gate Leakage                           | 1.66871 W    | 0.0563774 W   |
+| Runtime Dynamic                        | 72.9199 W    | 2.96053 W     |
+| Total Simulation Time                  | t            | 40*t          |
+
+With the above results we can calculate the total energy that each processor used in order to execute the program. The equation that we are going to use for the Energy calculation is:  
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=\dpi{150}&space;Energy&space;=&space;[Runtime\_Dynamic&space;&plus;&space;Total\_Leakage]&space;*&space;Simulation\_Time" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;Energy&space;=&space;[Runtime\_Dynamic&space;&plus;&space;Total\_Leakage]&space;*&space;Simulation\_Time" title="Energy = [Runtime\_Dynamic + Total\_Leakage] * Simulation\_Time" /></a>
+
+For the Cortex-A9 the results are: <a href="https://www.codecogs.com/eqnedit.php?latex=\small&space;Energy&space;=&space;[2.96053&space;W&space;&plus;&space;0.108687W]*40t&space;sec&space;=&space;122.76868t&space;J" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\small&space;Energy&space;=&space;[2.96053&space;W&space;&plus;&space;0.108687W]*40t&space;sec&space;=&space;122.76868t&space;J" title="\small Energy = [2.96053 W + 0.108687W]*40t sec = 122.76868t J" /></a> 
+
+While for the Xeon Tulsa the results are: <a href="https://www.codecogs.com/eqnedit.php?latex=\small&space;Energy&space;=&space;[72.9199&space;W&space;&plus;&space;36.8319W]*t&space;sec&space;=&space;109.7518t&space;J" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\small&space;Energy&space;=&space;[72.9199&space;W&space;&plus;&space;36.8319W]*t&space;sec&space;=&space;109.7518t&space;J" title="\small Energy = [72.9199 W + 36.8319W]*t sec = 109.7518t J" /></a>  
+
+If we take into account the fact that after the execution of the program, the _Xeon Tulsa_ is not going to turn off, but is going to stall until the ARM finishes its execution, then we need to add to the _Subthreshold Leakage with Power Gating_ for **ALL** the transistors of the CPU for the _39*t_ seconds. The calculations show that the added energy is > 16.3977*39t which is extremely higher than the _122.76868t Joules_ of the ARM Cortex-A9.
