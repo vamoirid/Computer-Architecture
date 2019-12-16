@@ -1,9 +1,9 @@
-# Report for Lab2
-## 1. Run SPEC CPU2006 Benchmarks at gem5.
+# Design Space Exploration with gem5
+## 1. Run SPEC CPU2006 Benchmarks at gem5
 
 The 2nd Laboratory is about running various benchmarks in **gem5** for different systems, that vary in Cache Memory parameters. These benchmarks are a subset of **SPEC CPU2006** benchmark suite.
 
-### 1.1 Cache Memory parameters in generated files.
+### 1.1 Cache Memory parameters in generated files
 
 Every generated file from the simulation contains all the preconfigured parameters of the system and obviously the results of the simulation. In this assignement we need to find some general characteristics about Cache Memories inside the CPU and comment on them. The specific parameters that we need to look for are:
 
@@ -299,7 +299,7 @@ The results in this graph are quite obvious and a little bit controversial one c
 
 The final part of this assignment is about categorizing the changes in the parameters of Cache Memory not only with the CPI optimization but also the overall **"cost"** that they add to the system. With the term **cost** we do not only mean the real price in money, but also the cost of adding physical size to memories, the cost of adding associativity to a memory, the cost of adding bytes in the Cache Line by reducing the total speed and many more examples like these. So we need to find a corresponding function in order to understand which changes are really worth.
 
-### 3.1 Parameters affecting the Cost Performance.
+### 3.1 Parameters affecting the Cost Performance
 
 After looking for a lot of papers and citations about the Cache Memory Organization and characteristics we came to some findings about the parameters which affect the cost and their relationship between.
 
@@ -323,7 +323,7 @@ L1 Cache is positioned as close to the processor as possible, thus the addition 
 * **Cache Line Size**  
 The increase of the Cache Line size takes advantage of spatial locality in order to reduce miss rate, but they make the memory a lot slower. So as we can understand the increase of Cache Line size in L1 Cache should be a lot costlier than that in L2 Cache because L1 Cache aims **exclusively for speed** while L2 Cache aims not only for speed but for capacity also. Every time that we need to load a new line we would load **2x** the amount of data if we double the amount of data in the Line. So for L1 Cache the coefficient is <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;(1&plus;\frac{CacheLine}{128})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;(1&plus;\frac{CacheLine}{128})" title="(1+\frac{CacheLine}{128})" /></a> while for L2 Cache is <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;(1&plus;\frac{CacheLine}{256})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;(1&plus;\frac{CacheLine}{256})" title="(1+\frac{CacheLine}{256})" /></a>.
 
-### 3.3 Generating the Cost Function and analysing the Benchmarks' results.
+### 3.3 Generating the Cost Function and analysing the Benchmarks' results
 
 The cost function is a polyominal of: 
 
@@ -349,11 +349,11 @@ So the final _Relative Cost Function_ is: <a href="https://www.codecogs.com/eqne
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=Cost&space;=&space;[10L1.D_{size}(1&plus;\frac{L1.D_{Assoc}}{10}&space;&plus;&space;\frac{CacheLine}{64})&plus;10L1.I_{size}(1&plus;\frac{L1.I_{Assoc}}{10}&space;&plus;&space;\frac{CacheLine}{64})&plus;L2_{size}(1&plus;\frac{L2_{Assoc}}{20}&plus;\frac{CacheLine}{128})]*[ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}&plus;e)]^{12}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Cost&space;=&space;[10L1.D_{size}(1&plus;\frac{L1.D_{Assoc}}{10}&space;&plus;&space;\frac{CacheLine}{64})&plus;10L1.I_{size}(1&plus;\frac{L1.I_{Assoc}}{10}&space;&plus;&space;\frac{CacheLine}{64})&plus;L2_{size}(1&plus;\frac{L2_{Assoc}}{20}&plus;\frac{CacheLine}{128})]*[ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}&plus;e)]^{12}" title="Cost = [10L1.D_{size}(1+\frac{L1.D_{Assoc}}{10} + \frac{CacheLine}{64})+10L1.I_{size}(1+\frac{L1.I_{Assoc}}{10} + \frac{CacheLine}{64})+L2_{size}(1+\frac{L2_{Assoc}}{20}+\frac{CacheLine}{128})]*[ln(\frac{CPI_{new}-CPI_{old}}{CPI_{old}}+e)]^{12}" /></a>
 
-### 3.4 Parsing the Benchmarks' Results in the Cost Function.
+### 3.4 Parsing the Benchmarks' Results in the Cost Function
 
 Now that we have the _Cost Function_ and the _Relative Cost Function_ we can finally parse the results from Chapter 2.1 in order to see the Cost vs Performance characteristic. 
 
-#### 3.4.1 401.bzip2 Benchmark Setups in Cost Function.
+#### 3.4.1 401.bzip2 Benchmark Setups in Cost Function
 
 | Cost Function | Relative Cost Function |
 |:-------------:|:----------------------:|
@@ -375,7 +375,7 @@ Moreover here are the characteristics of the _Cheapest, Most Expensive, Best and
 | Best CPI for Cost    | 3             | 4352    | 1.65759  |
 | Worst CPI for Cost   | 57            | 9395.2  | 1.647684 |
 
-#### 3.4.2 429.mcf Benchmark Setups in Cost Function.
+#### 3.4.2 429.mcf Benchmark Setups in Cost Function
 
 | Cost Function | Relative Cost Function |
 |:-------------:|:----------------------:|
@@ -397,7 +397,7 @@ Moreover here are the characteristics of the _Cheapest, Most Expensive, Best and
 | Best CPI for Cost    | 16            | 5120    | 1.124828 |
 | Worst CPI for Cost   | 13            | 5094.4  | 1.330534 |
 
-#### 3.4.3 456.hmmer Benchmark Setups in Cost Function.
+#### 3.4.3 456.hmmer Benchmark Setups in Cost Function
 
 | Cost Function | Relative Cost Function |
 |:-------------:|:----------------------:|
@@ -419,7 +419,7 @@ Moreover here are the characteristics of the _Cheapest, Most Expensive, Best and
 | Best CPI for Cost    | 1             | 4198.4  | 1.187917 |
 | Worst CPI for Cost   | 16            | 6886.4  | 1.180170 |
 
-#### 3.4.4 458.sjeng Benchmark Setups in Cost Function.
+#### 3.4.4 458.sjeng Benchmark Setups in Cost Function
 
 | Cost Function | Relative Cost Function |
 |:-------------:|:----------------------:|
@@ -441,7 +441,7 @@ Moreover here are the characteristics of the _Cheapest, Most Expensive, Best and
 | Best CPI for Cost    | 33            | 5094.4  | 6.799471 |
 | Worst CPI for Cost   | 32            | 9523.2  | 10.26553 |
 
-#### 3.4.5 470.libm Benchmark Setups in Cost Function.
+#### 3.4.5 470.libm Benchmark Setups in Cost Function
 
 | Cost Function | Relative Cost Function |
 |:-------------:|:----------------------:|
@@ -465,4 +465,4 @@ Moreover here are the characteristics of the _Cheapest, Most Expensive, Best and
 
 ## 4. Conclusion  
 
-This assignment was a lot more demanding than the previous one in many ways. Every question needed searching in the generated files and also in the bibliography in order not only to be able to answer it, but also to be able to understand it correctly. We had to do a deep dive inside the CPU Core an try to find ways to improve our system. We managed to learn a lot of things about the basic internal working of a CPU core and how the Cache Memory can be a very crucial factor in the total performance of the system. The first part of this assignment gave us a more general view about how every system inside the Core communicates. Moreover we could learn again how to process the generated files in order to get our results. The second part was without a doubt the most difficult one. We had to improve the results of the benchmarks but in a way that we would do as little simulations as possible. Finally, the third part made us search a little bit more about the Cache Memory parameters but this time not about performance, but for cost estimation. By using these results we managed to get some important results about the cost of our improvements and how each of the parameters affect the total cost of the product.
+This assignment was a lot more demanding than the previous one in many ways. Every question needed searching in the generated files and also in the bibliography in order not only to be able to answer it, but also to be able to understand it correctly. We had to do a deep dive inside the Processor an try to find ways to improve our system. We managed to learn a lot of things about the basic internal working of a Processor and how the Cache Memory can be a very crucial factor in the total performance of the system. The first part of this assignment gave us a more general view about how every system inside the Core communicates. Moreover we could learn again how to process the generated files in order to get our results. The second part was without a doubt the most difficult one. We had to improve the results of the benchmarks but in a way that we would do as little simulations as possible. Finally, the third part made us search a little bit more about the Cache Memory parameters but this time not about performance, but for cost estimation. By using these results we managed to get some important results about the cost of our improvements and how each of the parameters affect the total cost of the product.
