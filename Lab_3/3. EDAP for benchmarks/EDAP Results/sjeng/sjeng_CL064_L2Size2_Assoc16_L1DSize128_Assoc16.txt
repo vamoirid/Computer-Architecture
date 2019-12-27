@@ -1,0 +1,4 @@
+Runtime: 0.513548 sec 
+Area: 17.800000 mm^2 
+Energy: 716.817488 mJ
+EDAP: 6.552539

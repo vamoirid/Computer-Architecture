@@ -5,3 +5,9 @@ arch_assignment2.pdf
 read_results.sh
 script_step1.sh
 tables.txt
+bzip2_EDAP.txt
+hmmer_EDAP.txt
+mcf_EDAP.txt
+libm_EDAP.txt
+sjeng_EDAP.txt
+

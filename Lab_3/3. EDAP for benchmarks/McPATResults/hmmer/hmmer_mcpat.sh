@@ -1,0 +1,16 @@
+./mcpat -infile '/home/vamoirid/my_mcpat/mcpat/ProcessorDescriptionFiles/hmmer/hmmer_CL064_L1DSize064_Assoc02.xml' -print_level 5 > hmmer_CL064_L1DSize064_Assoc02.txt
+./mcpat -infile '/home/vamoirid/my_mcpat/mcpat/ProcessorDescriptionFiles/hmmer/hmmer_CL064_L1DSize064_Assoc04.xml' -print_level 5 > hmmer_CL064_L1DSize064_Assoc04.txt
+./mcpat -infile '/home/vamoirid/my_mcpat/mcpat/ProcessorDescriptionFiles/hmmer/hmmer_CL064_L1DSize064_Assoc08.xml' -print_level 5 > hmmer_CL064_L1DSize064_Assoc08.txt
+./mcpat -infile '/home/vamoirid/my_mcpat/mcpat/ProcessorDescriptionFiles/hmmer/hmmer_CL064_L1DSize064_Assoc16.xml' -print_level 5 > hmmer_CL064_L1DSize064_Assoc16.txt
+./mcpat -infile '/home/vamoirid/my_mcpat/mcpat/ProcessorDescriptionFiles/hmmer/hmmer_CL064_L1DSize128_Assoc02.xml' -print_level 5 > hmmer_CL064_L1DSize128_Assoc02.txt
+./mcpat -infile '/home/vamoirid/my_mcpat/mcpat/ProcessorDescriptionFiles/hmmer/hmmer_CL064_L1DSize128_Assoc04.xml' -print_level 5 > hmmer_CL064_L1DSize128_Assoc04.txt
+./mcpat -infile '/home/vamoirid/my_mcpat/mcpat/ProcessorDescriptionFiles/hmmer/hmmer_CL064_L1DSize128_Assoc08.xml' -print_level 5 > hmmer_CL064_L1DSize128_Assoc08.txt
+./mcpat -infile '/home/vamoirid/my_mcpat/mcpat/ProcessorDescriptionFiles/hmmer/hmmer_CL064_L1DSize128_Assoc16.xml' -print_level 5 > hmmer_CL064_L1DSize128_Assoc16.txt
+./mcpat -infile '/home/vamoirid/my_mcpat/mcpat/ProcessorDescriptionFiles/hmmer/hmmer_CL128_L1DSize064_Assoc02.xml' -print_level 5 > hmmer_CL128_L1DSize064_Assoc02.txt
+./mcpat -infile '/home/vamoirid/my_mcpat/mcpat/ProcessorDescriptionFiles/hmmer/hmmer_CL128_L1DSize064_Assoc04.xml' -print_level 5 > hmmer_CL128_L1DSize064_Assoc04.txt
+./mcpat -infile '/home/vamoirid/my_mcpat/mcpat/ProcessorDescriptionFiles/hmmer/hmmer_CL128_L1DSize064_Assoc08.xml' -print_level 5 > hmmer_CL128_L1DSize064_Assoc08.txt
+./mcpat -infile '/home/vamoirid/my_mcpat/mcpat/ProcessorDescriptionFiles/hmmer/hmmer_CL128_L1DSize064_Assoc16.xml' -print_level 5 > hmmer_CL128_L1DSize064_Assoc16.txt
+./mcpat -infile '/home/vamoirid/my_mcpat/mcpat/ProcessorDescriptionFiles/hmmer/hmmer_CL128_L1DSize128_Assoc02.xml' -print_level 5 > hmmer_CL128_L1DSize128_Assoc02.txt
+./mcpat -infile '/home/vamoirid/my_mcpat/mcpat/ProcessorDescriptionFiles/hmmer/hmmer_CL128_L1DSize128_Assoc04.xml' -print_level 5 > hmmer_CL128_L1DSize128_Assoc04.txt
+./mcpat -infile '/home/vamoirid/my_mcpat/mcpat/ProcessorDescriptionFiles/hmmer/hmmer_CL128_L1DSize128_Assoc08.xml' -print_level 5 > hmmer_CL128_L1DSize128_Assoc08.txt
+./mcpat -infile '/home/vamoirid/my_mcpat/mcpat/ProcessorDescriptionFiles/hmmer/hmmer_CL128_L1DSize128_Assoc16.xml' -print_level 5 > hmmer_CL128_L1DSize128_Assoc16.txt
