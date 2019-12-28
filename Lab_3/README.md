@@ -124,19 +124,28 @@ In the previous Laboratory we tried to categorize the changes in the internals o
 #### 3.1 401.bzip2
 
 <img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_3/Plots/bzip2_EDAP.png" width="433" height="350" /><img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bzip_relativecost.png" width="433" height="350" />
+The two graphs are a lot like each other. As we increase the associativities and the sizes in memories we see an increase to the Cost and EDAP while the major change happens to the 64 Bytes -> 128 Bytes Cache Line size.
 
 #### 3.2 429.mcf
 
 <img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_3/Plots/mcf_EDAP.png" width="433" height="350" /><img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/mcf_relativecost.png" width="433" height="350" />
+The two graphs here are not so much alike due to the fact that in the Cost Function we gave a lot more "weight" to the CPI Gain rather than the other parameters. So event though here we have an decrease in CPI from 64 Bytes -> 128 Bytes the area that we need to cover is a lot higher.
 
 #### 3.3 456.hmmer
 
 <img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_3/Plots/hmmer_EDAP.png" width="433" height="350" /><img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/hmmer_relativecost.png" width="433" height="350" />
+The two functions are quite alike. Due to the fact that this benchmark's CPI was so close to 1 (1.15) every change in the Cache Parameters is not worth.
 
 #### 3.4 458.sjeng
 
 <img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_3/Plots/sjeng_EDAP.png" width="433" height="350" /><img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/sjeng_relativecost.png" width="433" height="350" />
+What we see here is the effect of the CPI Gain. In the second half that the CPI is decreased dramatically we see that the **Relative Cost Function** has a lot more significance than in the EDAP. 
 
 #### 3.5 470.libm
 
 <img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_3/Plots/libm_EDAP.png" width="433" height="350" /><img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/libm_relativecost.png" width="433" height="350" />
+As before, what we see here is the effect of the CPI Gain. In the second half that the CPI is decreased dramatically we see that the **Relative Cost Function** has a lot more significance than in the EDAP. 
+
+# 4. Conclusion
+
+This Laboratory was a lot easier and a lot little time consuming than the previous one. We really saw the impact of the Cache Memory in a Processor because of the fact that it consumes more than 80% of it. We understood the differences between the Intel and the ARM architectures with respect to energy efficiency and time efficiency and we also learned that Leakage in Processors is a very important issue that we need to take into consideration when we design a processor.
