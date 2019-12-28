@@ -1,0 +1,5 @@
+Peak Power: 3.988000 W 
+Total Area: 21.832100 mm^2 
+L2 Cache Area: 12.881300 mm^2 
+Data Cache Area: 3.174780 mm^2 
+Instruction Cache Area: 0.629201 mm^2
