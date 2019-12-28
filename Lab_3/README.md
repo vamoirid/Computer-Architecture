@@ -97,3 +97,55 @@ We need to extract the values of these variables either in _gem5_ or _McPAT_ gen
 * **Energy**  _(units in Joules)_: Energy can be calculated by the equation <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;\small&space;[Runtime\_Dynamic&space;&plus;&space;Total\_Leakage]&space;*&space;Simulation\_Time" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;\small&space;[Runtime\_Dynamic&space;&plus;&space;Total\_Leakage]&space;*&space;Simulation\_Time" title="\small [Runtime\_Dynamic + Total\_Leakage] * Simulation\_Time" /></a>.
 * **Delay** _(units in seconds)_: It is the _total simulation seconds_ given in stats.txt from _gem5_. 
 * **Area** _(units in mm^2)_: It is given as an output of _McPAT_. 
+
+### 2.2 Influence of each Cache parameter in Peak Power & Area
+
+In order to have a better understanding of how each Cache parameter really affects the resulting power and area of a processor we need to use the various results that we got from the previous Laboratory in section 2.2 (and a lot more) and parse them to McPAT to get the desired results. Moreover, in order to make our job easier we modified the **_print_energy.py_** file in order to print the Peak Power, Total Area, L1 I-Cache Area, L1 D-Cache Area & L2 Cache Area and also to save the results in a _.txt_ file. The name of this file is **_print_Area_PeakPower.py_**.
+
+#### 2.2.1 L1 Inctruction-Cache
+
+<img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_3/Plots/icache_peakpower.png" width="433" height="350" /><img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_3/Plots/icache_totalarea.png" width="433" height="350" />
+It is obvious that there was no important change in Peak Power either Area from the change in Associativity. There is indeed a difference when we change the size of the memory as it requires a lot more transistors in order to increase the capacity. Peak Power increased 15%-25% every time that we doubled the size of the memory while area increased 20% each time we doubled the memory. The main difference though came from the increase of Cache Line size from 64 Bytes to 128 Bytes. Peak Power increased to **more than double** the value that it had before and Area increased **2-3 times**.
+
+#### 2.2.2 L1 Data-Cache
+
+<img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_3/Plots/dcache_peakpower.png" width="433" height="350" /><img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_3/Plots/dcache_totalarea.png" width="433" height="350" />
+Everything that we said for the L1 Instruction-Cache is also true for the L1 Data-Cache. The main differences come from changes in size and Cache Line size and not from Associativity. Again Peak Power increased 15%-25% every time that we doubled the size of the memory while area increased 20% each time we doubled the memory while for the change in Cache Line Peak Power increased to **more than double** the value that it had before and Area increased **2-3 times**.
+
+#### 2.2.3 L2 Cache
+
+<img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_3/Plots/l2cache_peakpower.png" width="433" height="350" /><img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_3/Plots/l2cache_totalarea.png" width="433" height="350" />
+For the L2 Cache, the things are no different compared to the previous results. As before there is almost no change in Peak Power nor Area for the increase in Associativity. When we increase the size of the memory while we see **no** change in Peak Power what is really happening in Area is that it has an increase of 20% for every time that we double the size of L2 Cache. For the change in Cache Line size as before, Peak Power for 128 Bytes is **2 times higher** than for 64 Bytes while Area for 128 Bytes is almost **3 times higher** than for 64 Bytes.
+
+## 3. EDAP vs Cost Function
+
+In the previous Laboratory we tried to categorize the changes in the internals of a processor with respect to the change in CPI and their Cost. This time we want to categorize these changes with respect to the total Area of the processor, the overall energy that it need in order to run the benchmark and also the total time that it need for the benchmark. What we did was to modify the existing _print_energy.py_ file into a _print_EDAP.py_ in order to have quicker access to the results. 
+
+#### 3.1 401.bzip2
+
+<img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_3/Plots/bzip2_EDAP.png" width="433" height="350" /><img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/bzip_relativecost.png" width="433" height="350" />
+The two graphs are a lot like each other. As we increase the associativities and the sizes in memories we see an increase to the Cost and EDAP while the major change happens to the 64 Bytes -> 128 Bytes Cache Line size.
+
+#### 3.2 429.mcf
+
+<img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_3/Plots/mcf_EDAP.png" width="433" height="350" /><img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/mcf_relativecost.png" width="433" height="350" />
+The two graphs here are not so much alike due to the fact that in the Cost Function we gave a lot more "weight" to the CPI Gain rather than the other parameters. So event though here we have an decrease in CPI from 64 Bytes -> 128 Bytes the area that we need to cover is a lot higher.
+
+#### 3.3 456.hmmer
+
+<img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_3/Plots/hmmer_EDAP.png" width="433" height="350" /><img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/hmmer_relativecost.png" width="433" height="350" />
+The two functions are quite alike. Due to the fact that this benchmark's CPI was so close to 1 (1.15) every change in the Cache Parameters is not worth.
+
+#### 3.4 458.sjeng
+
+<img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_3/Plots/sjeng_EDAP.png" width="433" height="350" /><img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/sjeng_relativecost.png" width="433" height="350" />
+What we see here is the effect of the CPI Gain. In the second half that the CPI is decreased dramatically we see that the **Relative Cost Function** has a lot more significance than in the EDAP. 
+
+#### 3.5 470.libm
+
+<img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_3/Plots/libm_EDAP.png" width="433" height="350" /><img src="https://github.com/vamoirid/Computer-Architecture/blob/master/Lab_2/plots/libm_relativecost.png" width="433" height="350" />
+As before, what we see here is the effect of the CPI Gain. In the second half that the CPI is decreased dramatically we see that the **Relative Cost Function** has a lot more significance than in the EDAP. 
+
+# 4. Conclusion
+
+This Laboratory was a lot easier and a lot little time consuming than the previous one. We really saw the impact of the Cache Memory in a Processor because of the fact that it consumes more than 80% of it. We understood the differences between the Intel and the ARM architectures with respect to energy efficiency and time efficiency and we also learned that Leakage in Processors is a very important issue that we need to take into consideration when we design a processor.
